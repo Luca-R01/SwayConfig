@@ -1,0 +1,85 @@
+* {
+	border: 0;
+    	border-radius: 0;
+    	min-height: 0;
+    	margin: 0;
+    	padding: 0;
+}
+
+#waybar {
+	background: black;
+    	color: white;
+    	font-family : JetBrains Mono;
+	font-size: 13px;  
+}
+
+tooltip {
+	background-color: black;
+	color: white;
+}
+
+#battery.warning {
+	color: orange;
+	background-color: black;
+}
+#battery.critical {
+        color: red;
+        background-color: black;
+}
+
+#disk.warning {
+        color: orange;
+}
+#disk.critical {
+        color: red;
+}
+
+
+#clock {
+    	font-weight: bold;
+}
+
+#cpu.warning {
+	color: orange;
+        background-color: black;
+}
+#cpu.critical {
+        color: red;
+        background-color: black;
+}
+
+#memory.warning {
+	color: orange;
+        background-color: black;
+}
+#memory.critical {
+	color: red;
+        background-color: black;
+}
+
+#network.disconnected {
+	color: orange;
+}
+
+#pulseaudio.high {
+	color: red;
+}
+
+#temperature.critical {
+    	color: red;
+}
+
+#workspaces button.focused {
+        background-color: #5294e2;
+    	color: black;
+        border-radius: 0;
+}
+#workspaces button {
+	border-radius: 0;
+}
+
+
+
+
+
+

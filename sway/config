@@ -1,0 +1,169 @@
+# Sway configuration file
+
+###Apparance-----------------------------------------------------------------------------------------------------------------------------------------------------
+
+# Status Bar:
+bar {
+	swaybar_command waybar
+}
+
+#Borders
+default_border pixel 5
+default_floating_border pixel 5
+hide_edge_borders none
+smart_borders off
+gaps inner 10
+
+include colorscheme
+client.focused #5294e2 #5294e2 #5294e2 #5294e2
+client.unfocused #4b5162 #4b5162 #4b5162 #4b5162
+
+#Font
+font pango:JetBrains Regular 11
+
+
+###Variables------------------------------------------------------------------------------------------------------------------------------------------------------
+
+# Logo key. Use Mod1 for Alt.
+set $mod Mod4
+
+# Your preferred terminal emulator
+set $term gnome-terminal
+
+# Your preferred application launcher
+set $menu wofi --show drun -I
+
+#WOB config
+set $WOBSOCK $XDG_RUNTIME_DIR/wob.sock
+exec rm -f $WOBSOCK && mkfifo $WOBSOCK && tail -f $WOBSOCK | wob
+
+
+### Output configuration------------------------------------------------------------------------------------------------------------------------------------------
+
+# Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
+output * bg wallpaper.jpg fill
+
+#Night Light
+exec 'wlsunset -l 41.902782 -L 12.496366'
+
+
+### Input configuration-------------------------------------------------------------------------------------------------------------------------------------------
+
+#Keyboard layout
+input * xkb_layout "it"
+
+#Touchpad
+input "1739:0:Synaptics_tm2964-001" {
+	natural_scroll enabled
+}
+exec 'libinput-gestures -c /etc/libinput/sway-gestures.conf'
+
+
+### Idle configuration--------------------------------------------------------------------------------------------------------------------------------------------
+
+exec swayidle -w timeout 300 'systemctl --user start swaylock.service'
+
+### Key bindings--------------------------------------------------------------------------------------------------------------------------------------------------
+
+##FN Keybinds
+
+#Volume
+bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5% && pactl get-sink-volume @DEFAULT_SINK@ | head -n 1| awk '{print substr($5, 1, length($5)-1)}' > $WOBSOCK
+bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5% && pactl get-sink-volume @DEFAULT_SINK@ | head -n 1 | awk '{print substr($5, 1, length($5)-1)}' > $WOBSOCK
+bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
+
+#Microphone
+bindsym XF86AudioMicMute exec pactl set-source-mute @DEFAULT_SOURCE@ toggle
+
+#Brightness
+bindsym XF86MonBrightnessDown exec brightnessctl set 5%- | sed -En 's/.*\(([0-9]+)%\).*/\1/p' > $WOBSOCK
+bindsym XF86MonBrightnessUp exec brightnessctl set +5% | sed -En 's/.*\(([0-9]+)%\).*/\1/p' > $WOBSOCK
+
+#Music
+bindsym XF86AudioPlay exec playerctl play-pause
+bindsym XF86AudioNext exec playerctl next
+bindsym XF86AudioPrev exec playerctl previous
+
+#Extra
+bindsym XF86Search exec $menu
+bindsym XF86Explorer exec nemo
+bindsym XF86Tools exec swaysettings 
+bindsym XF86Display exec obs
+
+# Start a terminal
+bindsym $mod+Return exec $term
+
+# Kill focused window
+bindsym alt+f4 kill	
+
+# Make the current focus fullscreen
+bindsym $mod+f fullscreen
+
+# Start your launcher
+bindsym $mod+d exec $menu
+    
+# Logout menu
+bindsym $mod+q exec wlogout
+    
+# Lock
+bindsym $mod+l exec systemctl --user start swaylock.service 
+    
+#Screenshot
+bindsym Print exec grimshot --notify save screen
+
+# Reload the configuration file
+bindsym $mod+Shift+c reload
+
+#Resize window with mouse    
+floating_modifier $mod normal
+
+# Moving around:
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# Move the focused window with the same, but add Shift
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+### Workspaces----------------------------------------------------------------------------------------------------------------------------------------------------
+
+# Switch to workspace
+bindsym $mod+1 workspace number 1
+bindsym $mod+2 workspace number 2
+bindsym $mod+3 workspace number 3
+bindsym $mod+4 workspace number 4
+bindsym $mod+5 workspace number 5
+bindsym $mod+6 workspace number 6
+bindsym $mod+7 workspace number 7
+bindsym $mod+8 workspace number 8
+bindsym $mod+9 workspace number 9
+bindsym $mod+0 workspace number 10
+
+# Move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace number 1
+bindsym $mod+Shift+2 move container to workspace number 2
+bindsym $mod+Shift+3 move container to workspace number 3
+bindsym $mod+Shift+4 move container to workspace number 4
+bindsym $mod+Shift+5 move container to workspace number 5
+bindsym $mod+Shift+6 move container to workspace number 6
+bindsym $mod+Shift+7 move container to workspace number 7
+bindsym $mod+Shift+8 move container to workspace number 8
+bindsym $mod+Shift+9 move container to workspace number 9
+bindsym $mod+Shift+0 move container to workspace number 10
+# Note: workspaces can have any name you want, not just numbers.
+# We just use 1-10 as the default.
+
+###Startup Application-------------------------------------------------------------------------------------------------------------------------------------------
+
+#Start Kdeconnect
+exec 'kdeconnect-indicator'
+
+#PolKit
+exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+
+
+include /etc/sway/config.d/*

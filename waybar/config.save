@@ -1,0 +1,160 @@
+{
+	// WayBar configuration	
+
+	"layer": "top",
+	"position": "top",
+	"height": 30,
+
+	"modules-left": [
+		"sway/workspaces"
+    	],
+    	"modules-center": [
+    	],
+    	"modules-right": [
+        	"pulseaudio#microphone",
+        	"pulseaudio#audio",
+        	"bluetooth",
+        	"network",
+        	"disk",
+        	"memory",
+        	"temperature",
+        	"cpu",
+        	"battery",
+        	"clock#date",
+        	"clock#time",
+        	"custom-powermenu"
+    	],
+
+	// Modules config
+	
+	"battery": {
+		"interval": 1,
+		"states": {
+			"warning": 30,
+			"critical": 15
+		},
+		"format": "  {icon} {capacity}% ",
+		"format-discharging": " {icon} {capacity}% ",
+		"format-icons": [
+            		"",
+            		"",
+            		"",
+            		"",
+            		"" 
+        	],
+		"tooltip": true
+	},
+
+	"clock#time": {
+        	"interval": 1,
+        	"format": " {:%H:%M} ",
+        	"tooltip-format": "{:%H:%M:%S}"
+    	},
+
+    	"clock#date": {
+      		"interval": 1,
+      		"format": "  {:%e %b %Y} ",
+      		"tooltip-format": "{:%e %B %Y}"
+    	},
+
+	"cpu": {
+        	"interval": 1,
+        	"format": "  {usage}% ({avg_frequency})GHz ", 
+        	"states": {
+          		"warning": 70,
+          		"critical": 90
+        	},
+		"on-click": "gnome-usage"
+	},
+
+	"temperature": {
+                "interval": 1,
+      		"critical-threshold": 80,
+      		"format": " {icon} {temperatureC}°C ",
+      		"format-icons": [
+          		"",
+          		"",
+          		"",
+          		"",
+          		""
+      		],
+      		"tooltip": true
+    	},
+
+	"disk": {
+        	"interval": 1,
+        	"format": "  {}% ",
+		"states": {
+			"warning": 80,
+			"critical": 90
+		},
+        	"on-click": "gnome-disks"
+    	},
+
+	"memory": {
+        	"interval": 1,
+        	"format": "  {}% ",
+        	"states": {
+            		"warning": 70,
+            		"critical": 90
+        	},
+                "on-click": "gnome-usage"
+    	},
+
+    	"network": {
+        	"interval": 1,
+        	"format-wifi": "  {essid} ({signalStrength}%) ",
+        	"format-ethernet": "  {ifname}: {ipaddr}",
+        	"format-disconnected": " ⚠ Disconnected ",
+        	"tooltip-format": "{ifname}: {ipaddr}/{cidr}", 
+        	"on-click": "nm-connection-editor",
+		"on-click-right": "wofi-wifi-menu"
+    	},
+
+	"bluetooth": {
+        	"format": "  {status} ",
+        	"format-connected": "  {device_alias} ",
+        	"on-click": "blueman-manager"
+    	},
+
+    	"pulseaudio#audio": {
+        	"scroll-step": 1,
+        	"format": " {icon} {volume}% ",
+        	"format-bluetooth": " {icon} {volume}% ",
+        	"format-muted": "   ",
+        	"format-icons": {
+            		"headphones": "",
+            		"handsfree": "",
+            		"headset": "",
+            		"phone": "",
+            		"portable": "",
+            		"car": "",
+            		"default": ["", ""]
+        	},
+            	"states": {
+            		"high": 101,
+        	},
+        	"on-click": "pavucontrol"
+    	},
+
+    	"pulseaudio#microphone": {
+        	"format" : "{format_source}",
+        	"format-source": "  ",
+        	"format-source-muted": "  ",
+                "on-click": "pavucontrol"
+    	},
+
+	// Sway Module
+
+	"sway/workspaces": {
+        	"all-outputs": false,
+        	"disable-scroll": true,
+        	"format": " {icon} {name} ",
+		"format-icons": {
+                	"focused": "",
+                	"default": ""
+		}
+        },
+	
+   
+}
