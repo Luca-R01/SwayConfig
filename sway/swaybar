@@ -1,0 +1,23 @@
+#!/bin/bash
+
+date=$(date +'🗓️ %d/%m/%Y  %H:%M')
+
+battery_capacity=$(cat /sys/class/power_supply/BAT1/capacity)
+battery_status=$(cat /sys/class/power_supply/BAT1/status)
+battery=$(echo "🔋$battery_capacity% $battery_status")
+
+audio=$(pactl get-sink-volume @DEFAULT_SINK@ | head -n 1| awk '{print substr($5, 1, length($5)-1)}')
+
+ip=$(hostname -i)
+
+temp=$(sensors | grep "id 0" | awk '{print $4}')
+
+bluetooth=$(bluetooth | awk '{print $3}')
+
+#disk=$(df | grep "/dev/mapper/system" | awk '{print $5}')
+
+#ram=$(free -m | grep "Mem" | awk '{print $3}')
+
+#cpu=$(mpstat | grep "all" | awk '{print $3}')
+
+echo "  $bluetooth | 🌐 $ip | 🔊$audio% | 🌡️$temp | $battery | $date |  $USER |"

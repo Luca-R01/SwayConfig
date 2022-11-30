@@ -4,7 +4,15 @@
 
 # Status Bar:
 bar {
-	swaybar_command waybar
+    	position top
+	font pango: Jetbrains Mono Bold 10
+	status_command while ~/.config/sway/swaybar; do sleep 1; done
+    	colors {
+        	statusline #ffffff
+        	background #000000
+        	inactive_workspace #000000 #000000 #ffffff
+		focused_workspace #5294e2 #5294e2 #000000
+    	}
 }
 
 #Borders
@@ -18,9 +26,13 @@ include colorscheme
 client.focused #5294e2 #5294e2 #5294e2 #5294e2
 client.unfocused #4b5162 #4b5162 #4b5162 #4b5162
 
-#Font
-font pango:JetBrains Regular 11
-
+# GTK Themes
+exec_always {
+    gsettings set org.gnome.desktop.interface gtk-theme 'Arc-Dark-solid'
+    gsettings set org.gnome.desktop.interface icon-theme 'Papirus-Dark'
+    gsettings set org.gnome.desktop.interface cursor-theme 'Adwaita'
+    gsettings set org.gnome.desktop.interface font-name 'Jetbrains Mono Bold 10'
+}
 
 ###Variables------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -33,10 +45,12 @@ set $term gnome-terminal
 # Your preferred application launcher
 set $menu wofi --show drun -I
 
-#WOB config
+# WOB config
 set $WOBSOCK $XDG_RUNTIME_DIR/wob.sock
 exec rm -f $WOBSOCK && mkfifo $WOBSOCK && tail -f $WOBSOCK | wob
 
+# LockScrren
+set $LOCK swaylock --font Jetbrains Mono Bold --screenshots --clock --indicator --indicator-radius 100 --indicator-thickness 7 --effect-blur 7x5 --effect-vignette 0.5:0.5 --ring-color 0066ff --key-hl-color 2e2e2e --line-color 00000000 --inside-color 00000088 --separator-color 00000000
 
 ### Output configuration------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -44,7 +58,7 @@ exec rm -f $WOBSOCK && mkfifo $WOBSOCK && tail -f $WOBSOCK | wob
 output * bg wallpaper.jpg fill
 
 #Night Light
-exec 'wlsunset -l 41.902782 -L 12.496366'
+exec 'gammastep -l 41.902782:12.496366'
 
 
 ### Input configuration-------------------------------------------------------------------------------------------------------------------------------------------
@@ -53,15 +67,15 @@ exec 'wlsunset -l 41.902782 -L 12.496366'
 input * xkb_layout "it"
 
 #Touchpad
-input "1739:0:Synaptics_tm2964-001" {
+input "1739:10608:SYN1B7E:01_06CB:2970_Touchpad" {
 	natural_scroll enabled
 }
-exec 'libinput-gestures -c /etc/libinput/sway-gestures.conf'
+#exec 'libinput-gestures -c /etc/libinput/sway-gestures.conf'
 
 
 ### Idle configuration--------------------------------------------------------------------------------------------------------------------------------------------
 
-exec swayidle -w timeout 300 'systemctl --user start swaylock.service'
+exec swayidle -w timeout 300 '$LOCK'
 
 ### Key bindings--------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -70,7 +84,7 @@ exec swayidle -w timeout 300 'systemctl --user start swaylock.service'
 #Volume
 bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5% && pactl get-sink-volume @DEFAULT_SINK@ | head -n 1| awk '{print substr($5, 1, length($5)-1)}' > $WOBSOCK
 bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5% && pactl get-sink-volume @DEFAULT_SINK@ | head -n 1 | awk '{print substr($5, 1, length($5)-1)}' > $WOBSOCK
-bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
+bindsym XF86AudioMute exec pactl set-sink-volume @DEFAULT_SINK@ 0
 
 #Microphone
 bindsym XF86AudioMicMute exec pactl set-source-mute @DEFAULT_SOURCE@ toggle
@@ -103,13 +117,13 @@ bindsym $mod+f fullscreen
 bindsym $mod+d exec $menu
     
 # Logout menu
-bindsym $mod+q exec wlogout
+bindsym $mod+q exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
     
 # Lock
-bindsym $mod+l exec systemctl --user start swaylock.service 
+bindsym $mod+l exec $LOCK 
     
 #Screenshot
-bindsym Print exec grimshot --notify save screen
+bindsym Print exec grim
 
 # Reload the configuration file
 bindsym $mod+Shift+c reload
