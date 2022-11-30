@@ -1,23 +1,22 @@
-#Sway Components
--sway
--swaybg
--swayidle
--waybar
--sway-lockseffect (AUR)
--grimshot
--wofi
+# Sway Components
+### - sway
+### - swaybg
+### - swayidle
+### - sway-lockseffect (AUR)
+### - grim
+### - wofi
 
-#Font
-awesome 
-jetbrains
+## Font
+### - awesome 
+### - jetbrains
 
-#theme
-skeous
+## theme
+### - Arc-Dark-solid
 
-#TouchPad gesture
-https://github.com/bulletmark/libinput-gestures
+## TouchPad gesture
+### - https://github.com/bulletmark/libinput-gestures
 
-#Bluetooth
--blueman package
+## Bluetooth
+### - blueman
 gsettings set org.blueman.general notification-daemon false
 
