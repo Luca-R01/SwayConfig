@@ -2,7 +2,7 @@
 ### - sway
 ### - swaybg
 ### - swayidle
-### - sway-lockseffect (AUR)
+### - swaylock-effects (AUR)
 ### - grim
 ### - wofi
 
