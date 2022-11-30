@@ -1,3 +1,6 @@
 background-color=#4B5162
 border-color=#5294e2
+border-size=5
+font=Jetbrains Mono Regular 10
 on-notify=exec mpv /usr/share/sounds/freedesktop/stereo/message.oga
+
