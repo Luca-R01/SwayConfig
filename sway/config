@@ -6,7 +6,7 @@
 bar {
     	position top
 	font pango: Jetbrains Mono Bold 10
-	status_command while ~/.config/sway/swaybar; do sleep 1; done
+	status_command while ~/.config/sway/swaybar; do sleep 0; done
     	colors {
         	statusline #ffffff
         	background #000000
@@ -27,12 +27,10 @@ client.focused #5294e2 #5294e2 #5294e2 #5294e2
 client.unfocused #4b5162 #4b5162 #4b5162 #4b5162
 
 # GTK Themes
-exec_always {
-    gsettings set org.gnome.desktop.interface gtk-theme 'Arc-Dark-solid'
-    gsettings set org.gnome.desktop.interface icon-theme 'Papirus-Dark'
-    gsettings set org.gnome.desktop.interface cursor-theme 'Adwaita'
-    gsettings set org.gnome.desktop.interface font-name 'Jetbrains Mono Bold 10'
-}
+exec gsettings set org.gnome.desktop.interface gtk-theme 'Arc-Dark-solid'
+exec gsettings set org.gnome.desktop.interface icon-theme 'Papirus-Dark'
+exec gsettings set org.gnome.desktop.interface cursor-theme 'Adwaita'
+exec gsettings set org.gnome.desktop.interface font-name 'Jetbrains Mono Bold 10'
 
 ###Variables------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -40,7 +38,7 @@ exec_always {
 set $mod Mod4
 
 # Your preferred terminal emulator
-set $term gnome-terminal
+set $TERM gnome-terminal
 
 # Your preferred application launcher
 set $menu wofi --show drun -I
@@ -67,7 +65,7 @@ exec 'gammastep -l 41.902782:12.496366'
 input * xkb_layout "it"
 
 #Touchpad
-input "1739:10608:SYN1B7E:01_06CB:2970_Touchpad" {
+input "1739:0:Synaptics_tm2964-001" {
 	natural_scroll enabled
 }
 #exec 'libinput-gestures -c /etc/libinput/sway-gestures.conf'
@@ -75,7 +73,9 @@ input "1739:10608:SYN1B7E:01_06CB:2970_Touchpad" {
 
 ### Idle configuration--------------------------------------------------------------------------------------------------------------------------------------------
 
-exec swayidle -w timeout 300 '$LOCK'
+exec swayidle -w \
+         timeout 300 '$LOCK' \
+         before-sleep '$LOCK'
 
 ### Key bindings--------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -105,7 +105,7 @@ bindsym XF86Tools exec swaysettings
 bindsym XF86Display exec obs
 
 # Start a terminal
-bindsym $mod+Return exec $term
+bindsym $mod+Return exec $TERM
 
 # Kill focused window
 bindsym alt+f4 kill	
@@ -117,7 +117,7 @@ bindsym $mod+f fullscreen
 bindsym $mod+d exec $menu
     
 # Logout menu
-bindsym $mod+q exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
+bindsym $mod+q exec swaynag -f 'Jetbrains Mono bold' -t warning -m 'Power Menu' -B 'Riavvia' 'systemctl reboot' -B 'Spegni' 'systemctl poweroff' -B 'Esci' 'swaymsg exit'
     
 # Lock
 bindsym $mod+l exec $LOCK 
