@@ -68,7 +68,7 @@ input * xkb_layout "it"
 input "1739:0:Synaptics_tm2964-001" {
 	natural_scroll enabled
 }
-#exec 'libinput-gestures -c /etc/libinput/sway-gestures.conf'
+exec 'libinput-gestures -c $HOME/.config/sway/libinput.conf'
 
 
 ### Idle configuration--------------------------------------------------------------------------------------------------------------------------------------------
@@ -173,11 +173,13 @@ bindsym $mod+Shift+0 move container to workspace number 10
 
 ###Startup Application-------------------------------------------------------------------------------------------------------------------------------------------
 
-#Start Kdeconnect
+# Start Kdeconnect
 exec 'kdeconnect-indicator'
 
-#PolKit
+# PolKit
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 
+# KeyRing
+exec eval $(gnome-keyring-daemon --start)
 
 include /etc/sway/config.d/*
