@@ -1,0 +1,37 @@
+# i3blocks configuration file
+#
+# The i3blocks man page describes the usage of the binary,
+# and its website describes the configuration:
+#
+#     https://vivien.github.io/i3blocks
+
+
+# Global properties
+separator=true
+separator_block_width=15
+command=$HOME/.config/i3blocks/$BLOCK_NAME
+
+[microphone]
+interval=1
+
+[audio]
+interval=1
+
+[bluetooth]
+interval=1
+
+[ip]
+interval=1
+
+[cputemp]
+interval=1
+
+[battery]
+interval=1
+
+[time]
+interval=1
+
+[user]
+command=echo " $USER"
+interval=once

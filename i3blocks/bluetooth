@@ -1,0 +1,4 @@
+#!/bin/bash
+
+bluetooth=$(bluetooth | awk '{print $3}')
+echo " $bluetooth"
