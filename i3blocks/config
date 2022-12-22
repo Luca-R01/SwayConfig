@@ -12,10 +12,12 @@ separator_block_width=15
 command=$HOME/.config/i3blocks/$BLOCK_NAME
 
 [microphone]
-interval=1
+interval=once
+signal=8
 
 [audio]
 interval=1
+signal=7
 
 [bluetooth]
 interval=1
@@ -33,5 +35,5 @@ interval=1
 interval=1
 
 [user]
-command=echo " $USER"
+color=#5294e2
 interval=once

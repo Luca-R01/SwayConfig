@@ -7,5 +7,3 @@ if [[ $audio_mute = yes ]] ; then
 else
         echo "🔊$audio_perc%"
 fi
-
-
