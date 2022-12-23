@@ -1,9 +1,0 @@
-#!/bin/bash
-
-ip=$(hostname -i)
-if [[ $ip = 127.0.0.2 ]] ; then
-        echo "⚠️ Disconnected"
-else
-        echo "🌐 $ip"
-fi
-
