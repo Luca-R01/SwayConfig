@@ -6,3 +6,7 @@ if [[ $mic = yes ]] ; then
 else
         echo ""
 fi
+
+if [[ "${BLOCK_BUTTON}" -eq 1 ]]; then
+  pactl set-source-mute @DEFAULT_SOURCE@ toggle && pkill -RTMIN+8 i3blocks
+fi

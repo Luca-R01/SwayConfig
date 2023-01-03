@@ -7,3 +7,7 @@ if [[ $audio_mute = yes ]] ; then
 else
         echo "🔊$audio_perc%"
 fi
+
+if [[ "${BLOCK_BUTTON}" -eq 1 ]]; then
+	pactl set-sink-mute @DEFAULT_SINK@ toggle && pkill -RTMIN+7 i3blocks
+fi
