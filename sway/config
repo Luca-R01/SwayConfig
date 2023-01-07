@@ -47,8 +47,8 @@ set $menu wofi --show drun -I
 set $WOBSOCK $XDG_RUNTIME_DIR/wob.sock
 exec rm -f $WOBSOCK && mkfifo $WOBSOCK && tail -f $WOBSOCK | wob
 
-# LockScrren
-set $LOCK swaylock --font Jetbrains Mono Bold --screenshots --clock --indicator --indicator-radius 100 --indicator-thickness 7 --effect-blur 7x5 --effect-vignette 0.5:0.5 --ring-color 0066ff --key-hl-color 2e2e2e --line-color 00000000 --inside-color 00000088 --separator-color 00000000
+# LockScreen
+set $LOCK swaylock --font jetbrains mono bold --screenshots --clock --indicator --indicator-radius 100 --indicator-thickness 7 --effect-blur 7x5 --effect-vignette 0.5:0.5 --ring-color 0066ff --key-hl-color 2e2e2e --line-color 00000000 --inside-color 00000088 --separator-color 00000000
 
 ### Output configuration------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -56,8 +56,9 @@ set $LOCK swaylock --font Jetbrains Mono Bold --screenshots --clock --indicator 
 output * bg wallpaper.jpg fill
 
 #Night Light
-exec 'gammastep -l 41.902782:12.496366'
-
+#exec 'gammastep -l 41.902782:12.496366'
+exec --no-startup-id /usr/lib/geoclue-2.0/demos/agent
+exec 'gammastep -l geoclue2'
 
 ### Input configuration-------------------------------------------------------------------------------------------------------------------------------------------
 
