@@ -2,7 +2,7 @@
 
 ip=$(hostname -i | awk '{print $1}')
 wifi=$(ip a | grep "$ip" | grep "wlan")
-eth=$(ip a | grep "$ip" | grep -E -o "eth")
+eth=$(ip a | grep "$ip" | grep "eth")
 
 if [[ $ip = 127.0.0.2 ]] ; then
         echo "⚠️ Disconnected"
