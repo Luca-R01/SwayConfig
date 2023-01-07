@@ -1,20 +1,20 @@
 #!/bin/bash
 
 ip=$(hostname -i | awk '{print $1}')
-wifi=$(ip a | grep "$ip" | grep -E -o "wlan")
+wifi=$(ip a | grep "$ip" | grep "wlan")
 eth=$(ip a | grep "$ip" | grep -E -o "eth")
 
 if [[ $ip = 127.0.0.2 ]] ; then
         echo "⚠️ Disconnected"
 else
-        if [[ $wifi = wlan ]] ; then
-		echo " $ip"
-	else 
-		if [[ $eth = eth ]] ; then
-			echo " $ip"
-		else
-			echo " $ip"
-		fi
+        if [[ ! -z "$eth" ]] ; then
+		echo " $ip"
+	else
+		if [[ ! -z "$wifi" ]] ; then
+			echo " $ip"
+                else
+                        echo " $ip"
+                fi
 	fi
 fi
 
