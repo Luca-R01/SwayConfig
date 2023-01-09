@@ -1,15 +1,16 @@
 #!/bin/bash
 
-BAT=$(acpi -b | grep -E -o '[0-9][0-9][0]?%')
-BAT_CHARGING=$(acpi | grep -E -o "Charging")
+BAT=$(echo "BAT0")
+BAT_PERC=$(cat /sys/class/power_supply/$BAT/capacity)
+BAT_STATUS=$(cat /sys/class/power_supply/$BAT/status)
 
-if [[ -z "$BAT" ]] ; then
+if [[ -z "$BAT_PERC" ]] ; then
 	echo ""
 else
-	if [[ $BAT_CHARGING = Charging ]] ; then
-        	echo "⚡🔋$BAT"
+	if [[ $BAT_STATUS = Charging ]] ; then
+        	echo "⚡🔋$BAT_PERC%"
 	else
-        	echo "🔋$BAT"
+        	echo "🔋$BAT_PERC%"
 	fi
 fi
 
