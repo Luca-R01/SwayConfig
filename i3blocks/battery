@@ -10,7 +10,11 @@ else
 	if [[ $BAT_STATUS = Charging ]] ; then
         	echo "⚡🔋$BAT_PERC%"
 	else
-        	echo "🔋$BAT_PERC%"
+		if [[ $BAT_PERC > 30 ]] ; then
+        		echo "🔋$BAT_PERC%"
+		else
+			echo "🪫$BAT_PERC%"
+		fi
 	fi
 fi
 
