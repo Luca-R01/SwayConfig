@@ -3,6 +3,7 @@
 ip=$(hostname -i | awk '{print $1}')
 wifi=$(ip a | grep "state UP" | grep "wlan")
 eth=$(ip a | grep "state UP" | grep "eth")
+wwan=$(ip a | grep "state UP" | grep "wwan")
 
 if [[ $ip = 127.0.0.2 ]] ; then
         echo "⚠️ Disconnected"
@@ -13,7 +14,9 @@ else
 		if [[ ! -z "$wifi" ]] ; then
 			echo " $ip"
                 else
-                        echo " $ip"
+			if [[ ! -z "$wan" ]] ; then
+				echo " $ip"
+			fi
                 fi
 	fi
 fi
