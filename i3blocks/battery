@@ -1,5 +1,4 @@
 #!/bin/bash
-
 BAT=$(echo "BAT0")
 BAT_PERC=$(cat /sys/class/power_supply/$BAT/capacity)
 BAT_STATUS=$(cat /sys/class/power_supply/$BAT/status)
@@ -8,15 +7,26 @@ if [[ -z "$BAT_PERC" ]] ; then
 	echo ""
 else
 	if [[ $BAT_STATUS = Charging ]] ; then
-        	echo "  $BAT_PERC%" && echo "" && echo "#4AF626"
-	else
-		if [[ $BAT_PERC -gt 30 ]] ; then
-        		echo " $BAT_PERC%"
-		else
-			echo " $BAT_PERC%" && echo "" && echo "#ff0000"
-		fi
+		COLOR=$(echo "#4AF626")
+        	CHARGE=$(echo "")
+        else
+        	if [[ ! $BAT_PERC -gt 30 ]] ; then
+        		COLOR=$(echo "#ff0000")
+        	else
+        		COLOR=$(echo "#ffffff")
+        	fi
 	fi
+
+        if [[ $BAT_PERC -gt 80 ]] ; then
+        	echo "$CHARGE $BAT_PERC%" && echo "" && echo $COLOR
+        elif [[ $BAT_PERC -gt 60 ]] ; then
+            	echo "$CHARGE $BAT_PERC%" && echo "" && echo $COLOR
+        elif [[ $BAT_PERC -gt 40 ]] ; then
+            	echo "$CHARGE $BAT_PERC%" && echo "" && echo $COLOR
+        elif [[ $BAT_PERC -gt 20 ]] ; then
+            	echo "$CHARGE $BAT_PERC%" && echo "" && echo $COLOR
+        else
+            	echo "$CHARGE $BAT_PERC%" && echo "" && echo $COLOR
+        fi
 fi
-
-
 
