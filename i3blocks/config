@@ -22,10 +22,13 @@ signal=7
 [bluetooth]
 interval=1
 
-[network]
+[vpn]
 interval=1
 
-[cputemp]
+[network]
+interval=1 
+
+[system-monitor]
 interval=1
 
 [battery]

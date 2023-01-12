@@ -1,0 +1,8 @@
+#!/bin/bash
+
+CPU=$(top -bn1 | grep "Cpu(s)" | awk '{print $2 + $4}')
+TEMP=$(sensors | grep "CPU" | awk '{print $2}')
+RAM=$(free -m | awk 'NR==2{printf "%d%%", int($3*100/$2) }')
+DISK=$(df -h / | awk '{print $5}' | tail -1 | tr -d '%')
+
+echo " $DISK%   $RAM   $CPU% 🌡️$TEMP "
