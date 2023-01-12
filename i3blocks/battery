@@ -8,14 +8,12 @@ if [[ -z "$BAT_PERC" ]] ; then
 	echo ""
 else
 	if [[ $BAT_STATUS = Charging ]] ; then
-        	echo "⚡🔋$BAT_PERC%"
+        	echo "  $BAT_PERC%" && echo "" && echo "#4AF626"
 	else
 		if [[ $BAT_PERC -gt 30 ]] ; then
-        		echo "🔋$BAT_PERC%"
+        		echo " $BAT_PERC%"
 		else
-			echo "🪫$BAT_PERC%"
-			echo ""
-			echo "#ff0000"
+			echo " $BAT_PERC%" && echo "" && echo "#ff0000"
 		fi
 	fi
 fi

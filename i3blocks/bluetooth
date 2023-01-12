@@ -1,7 +1,13 @@
 #!/bin/bash
 
 bluetooth=$(bluetooth | awk '{print $3}')
-echo " $bluetooth"
+
+if [[ $bluetooth = on ]]; then
+	echo " $bluetooth" && echo "" && echo "#5294e2"
+else
+	echo " $bluetooth" && echo "" && echo "#ff0000"
+fi
+
 
 if [[ "${BLOCK_BUTTON}" -eq 1 ]]; then
         bluetooth toggle
