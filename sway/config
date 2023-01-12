@@ -124,7 +124,7 @@ bindsym $mod+q exec swaynag -f 'Jetbrains Mono bold' -t warning -m 'Power Menu' 
 bindsym $mod+l exec $LOCK 
     
 # Screenshot
-bindsym Print exec grim
+bindsym Print exec grim && notify-send "Screenshot salvato"
 
 # Reload the configuration file
 bindsym $mod+Shift+c reload
@@ -182,5 +182,8 @@ exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 
 # KeyRing
 exec eval $(gnome-keyring-daemon --start)
+
+# Batsignal
+exec 'batsignal -f 100 -w 30 -c 15 -d 7 -b'
 
 include /etc/sway/config.d/*
