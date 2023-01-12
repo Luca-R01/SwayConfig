@@ -1,0 +1,14 @@
+#!/bin/bash
+
+# Get the temperature
+temp=$(sensors | grep "Package id 0" | awk '{print $4}'| sed 's/^+//' | sed 's/°C//' | sed 's/\.0//')
+
+# Get the color based on the temperature
+if [[ $temp -gt 70 ]]; then
+	echo "🌡️+$temp°C" && echo "" && echo "#ff0000"
+else
+    	echo "🌡️+$temp°C" && echo "" && echo "#ffffff"
+fi
+
+
+

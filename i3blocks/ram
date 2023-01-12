@@ -1,3 +1,9 @@
 #!/bin/bash
 
-free -h | awk '/^Mem:/ {print " "$3 "/" $2}'
+RAM=$(free -m | awk 'NR==2{printf "%d%%", int($3*100/$2)}' | sed 's/%//')
+
+if [[ $RAM -gt 70 ]]; then
+	echo " $RAM%" && echo "" && echo "#ff0000"
+else
+	echo " $RAM%" && echo "" && echo "#ffffff"
+fi

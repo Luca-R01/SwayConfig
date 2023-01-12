@@ -1,0 +1,13 @@
+#!/bin/bash
+
+mic_status=$(pactl get-source-mute @DEFAULT_SOURCE@ | awk '{print $2}')
+if [[ $mic_status = yes ]] ; then
+        echo "" && echo "" && echo "#ff0000"
+else
+        echo "" && echo "" && echo "#ffffff"
+fi
+
+if [[ "${BLOCK_BUTTON}" -eq 1 ]]; then
+  pactl set-source-mute @DEFAULT_SOURCE@ toggle && pkill -RTMIN+9 i3blocks
+fi
+
