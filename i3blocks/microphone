@@ -4,7 +4,7 @@ mic_status=$(pactl get-source-mute @DEFAULT_SOURCE@ | awk '{print $2}')
 if [[ $mic_status = yes ]] ; then
         echo "" && echo "" && echo "#ff0000"
 else
-        echo "" && echo "" && echo "#ffffff"
+        echo ""
 fi
 
 if [[ "${BLOCK_BUTTON}" -eq 1 ]]; then

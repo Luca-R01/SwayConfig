@@ -50,6 +50,7 @@ separator=false
 interval=1
 
 [time]
+color=#5294e2
 interval=1
 
 [user]

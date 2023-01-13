@@ -3,7 +3,7 @@
 bluetooth=$(bluetooth | awk '{print $3}')
 
 if [[ $bluetooth = on ]]; then
-	echo " $bluetooth" && echo "" && echo "#5294e2"
+	echo " $bluetooth"
 else
 	echo " $bluetooth" && echo "" && echo "#ff0000"
 fi
