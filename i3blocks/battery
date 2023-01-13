@@ -7,8 +7,9 @@ if [[ -z "$BAT_PERC" ]] ; then
 	echo ""
 else
 	if [[ $BAT_STATUS = Charging ]] ; then
-		COLOR=$(echo "#4AF626")
-        	CHARGE=$(echo "")
+		#COLOR=$(echo "#4AF626")
+        	COLOR=$(echo "#FFFF00")
+		CHARGE=$(echo "")
         else
         	if [[ ! $BAT_PERC -gt 30 ]] ; then
         		COLOR=$(echo "#ff0000")

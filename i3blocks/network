@@ -6,18 +6,16 @@ eth=$(ip a | grep "state UP" | grep "eth")
 wwan=$(ip a | grep "state UP" | grep "wwan")
 
 if [[ $ip = 127.0.0.2 ]] ; then
-        echo " Disconnected" && echo "" && echo "#c69035"
+	COLOR=$(echo "#FF0000")
+        echo " Disconnected" && echo "" && echo "$COLOR"
 else
+	COLOR=$(echo "#4AF626")
         if [[ ! -z "$eth" ]] ; then
-		echo " $ip" && echo "" && echo "#4AF626"
-	else
-		if [[ ! -z "$wifi" ]] ; then
-			echo " $ip" && echo "" && echo "#4AF626"
-                else
-			if [[ ! -z "$wan" ]] ; then
-				echo " $ip" && echo "" && echo "#4AF626"
-			fi
-                fi
+		echo " $ip" && echo "" && echo "$COLOR"
+	elif [[ ! -z "$wifi" ]] ; then
+		echo " $ip" && echo "" && echo "$COLOR"
+        elif [[ ! -z "$wan" ]] ; then
+		echo " $ip" && echo "" && echo "$COLOR"
 	fi
 fi
 
