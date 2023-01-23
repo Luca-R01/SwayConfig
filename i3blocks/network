@@ -14,7 +14,7 @@ else
 		echo " $ip" && echo "" && echo "$COLOR"
 	elif [[ ! -z "$wifi" ]] ; then
 		echo " $ip" && echo "" && echo "$COLOR"
-        elif [[ ! -z "$wan" ]] ; then
+        elif [[ ! -z "$wwan" ]] ; then
 		echo " $ip" && echo "" && echo "$COLOR"
 	fi
 fi
