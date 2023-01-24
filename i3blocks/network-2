@@ -1,16 +1,14 @@
 #!/bin/bash
 
 # Ottieni tutte le interfacce di rete attive
-interfacce=$(ip addr show | grep "state UP" | grep "^[0-9]" | awk '{print $2}' | cut -f1 -d:)
-
-# Inizializza la variabile di uscita
-output=""
+interfacce=$(ip addr show | grep "state UP" | awk '{print $2}' | cut -f1 -d:)
 
 if [[ -z "$interfacce" ]] ; then
 	COLOR=$(echo "#FF0000")
         output=$(echo " Disconnected")
 else
 	COLOR=$(echo "#4AF626")
+
 	# Itera attraverso le interfacce
 	for interfaccia in $interfacce; do
 	
