@@ -1,0 +1,33 @@
+#!/bin/bash
+
+# Ottieni tutte le interfacce di rete attive
+interfacce=$(ip addr show | grep "state UP" | awk '{print $2}' | cut -f1 -d:)
+
+if [[ -z "$interfacce" ]] ; then
+	COLOR=$(echo "#FF0000")
+        output=$(echo " Disconnected")
+else
+	COLOR=$(echo "#4AF626")
+
+	# Itera attraverso le interfacce
+	for interfaccia in $interfacce; do
+	
+		# Ottieni l'indirizzo IP associato all'interfaccia
+		ip=$(ip addr show $interfaccia | grep "inet " | awk '{print $2}' | cut -f1 -d/)
+ 		
+		if [[ $interfaccia = "wlan"* ]] ; then
+			icon=$(echo "")
+		elif [[ $interfaccia = "eth"* ]] ; then
+			icon=$(echo "")
+		elif [[ $interfaccia = "wwan"* ]] ; then
+			icon=$(echo "")
+		fi
+
+		# Aggiungi l'interfaccia e l'IP alla variabile di uscita
+		output="$output $icon $ip"	
+	done	
+fi
+
+# Stampa l'output
+echo $output && echo "" && echo "$COLOR"
+
