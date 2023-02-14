@@ -21,8 +21,9 @@ else
 			icon=$(echo "")
 		elif [[ $interfaccia = "wwan"* ]] ; then
 			icon=$(echo "")
+		else 
+                        icon=$(echo "")
 		fi
-
 		# Aggiungi l'interfaccia e l'IP alla variabile di uscita
 		output="$output $icon $ip"	
 	done	
