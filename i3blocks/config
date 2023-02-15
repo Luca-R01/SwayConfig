@@ -23,10 +23,6 @@ signal=11
 [bluetooth]
 interval=1
 
-[vpn]
-interval=1
-separator=false
-
 [network]
 interval=1 
 
