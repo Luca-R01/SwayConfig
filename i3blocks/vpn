@@ -1,9 +1,0 @@
-#!/bin/bash
-
-VPN=$(ip a | grep "tun0" | grep "inet" | awk '{print $2}')
-
-if [[ -z "$VPN" ]] ; then
-	echo ""
-else
-	echo " $VPN" && echo "" && echo "#4AF626"		
-fi
