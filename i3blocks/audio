@@ -1,23 +1,31 @@
 #!/bin/bash
 
-audio_perc=$(pactl get-sink-volume @DEFAULT_SINK@ | head -n 1| awk '{print substr($5, 1, length($5)-1)}')
-audio_mute=$(pactl get-sink-mute @DEFAULT_SINK@ | awk '{print $2}')
+# Prendo informazioni dell'audio
+AUDIO_PERC=$(pactl get-sink-volume @DEFAULT_SINK@ | head -n 1| awk '{print substr($5, 1, length($5)-1)}')
+AUDIO_MUTE=$(pactl get-sink-mute @DEFAULT_SINK@ | awk '{print $2}')
 
-if [[ $audio_mute = yes ]] ; then
-	echo "" && echo "" && echo "#ff0000"
+if [[ $AUDIO_MUTE = yes ]] ; then
+	COLOR="#ff0000"
+	ICON=""
 else
-	if [[ $audio_perc -gt 100 ]]; then
-		echo " $audio_perc%" && echo "" && echo "#ff0000"
-    	elif [[ $audio_perc -gt 69 ]]; then
-        	echo " $audio_perc%"
-    	elif [[ $audio_perc -gt 30 ]]; then
-        	echo " $audio_perc%" 
+	if [[ $AUDIO_PERC -gt 100 ]]; then
+		COLOR="#ff0000"
+		ICON=""
+    	elif [[ $AUDIO_PERC -gt 45 ]]; then
+        	ICON=""
+    	elif [[ $AUDIO_PERC -gt 0 ]]; then
+        	ICON=""
     	else
-        	echo " $audio_perc%"
+        	ICON=""
     	fi
 fi
 
+# Output
+echo "$ICON $AUDIO_PERC%" && echo "" && echo "$COLOR"
+
+# Mouse click event
 if [[ "${BLOCK_BUTTON}" -eq 1 ]]; then
-    	pactl set-sink-mute @DEFAULT_SINK@ toggle && pkill -RTMIN+11 i3blocks
+    	pactl set-sink-mute @DEFAULT_SINK@ toggle
 fi
+
 

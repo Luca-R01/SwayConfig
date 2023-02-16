@@ -1,16 +1,17 @@
 #!/bin/bash
 
-temp=$(sensors | grep "Package id 0" | awk '{print $4}'| sed 's/^+//' | sed 's/°C//' | sed 's/\.0//')
+TEMP=$(sensors | grep "Package id 0" | awk '{print $4}'| sed 's/^+//' | sed 's/°C//' | sed 's/\.0//')
 
-if [[ $temp -gt 80 ]]; then
-	echo "+$temp°C" && echo "" && echo "#ff0000"
-elif [[ $temp -gt 65 ]] ; then
-	echo "+$temp°C" && echo "" && echo "#ffffff"
-elif [[ $temp -gt 50 ]] ; then
-    	echo "+$temp°C" && echo "" && echo "#ffffff"
+if [[ $TEMP -gt 80 ]]; then
+	COLOR="ff0000"
+	ICON=""
+elif [[ $TEMP -gt 65 ]] ; then
+	ICON=""
+elif [[ $TEMP -gt 50 ]] ; then
+    	ICON=""
 else
-	echo "+$temp°C" && echo "" && echo "#ffffff"
+	ICON=""
 fi
 
-
-
+# Output
+echo "$ICON+$TEMP°C" && echo "" && echo "$COLOR"

@@ -1,40 +1,40 @@
 #!/bin/bash
 
-# Ottieni tutte le interfacce di rete attive
-interfacce=$(ip -o link show | awk -F': ' '{print $2}' | grep -v 'lo')
+# Ottieni tutte le INTERFACES di rete attive
+INTERFACES=$(ip -o link show | awk -F': ' '{print $2}' | grep -v 'lo')
 
 # Colore verde
-COLOR=$(echo "#4AF626")
+COLOR="#4AF626"
 
-# Itera attraverso le interfacce
-for interfaccia in $interfacce; do
+# Itera attraverso le INTERFACES
+for INTERFACE in $INTERFACES; do
 	
-	# Ottieni l'indirizzo IP associato all'interfaccia
-	ip=$(ip addr show $interfaccia | grep "inet " | awk '{print $2}' | cut -f1 -d/)
+	# Ottieni l'indirizzo IP associato all'INTERFACE
+	IP=$(ip addr show $INTERFACE | grep "inet " | awk '{print $2}' | cut -f1 -d/)
 		
-	# Controllo che l'output sia presente
-	if [[ ! -z $ip ]] ; then
-		if [[ $interfaccia = "wlan"* ]] ; then
-			icon=$(echo "")
-		elif [[ $interfaccia = "eth"* ]] ; then
-			icon=$(echo "")
-		elif [[ $interfaccia = "wwan"* ]] ; then
-			icon=$(echo "")
-		elif [[ $interfaccia = "tun"* ]] ; then
-			icon=$(echo "")
+	# Controllo che l'OUTPUT sia presente
+	if [[ ! -z $IP ]] ; then
+		if [[ $INTERFACE = "wlan"* ]] ; then
+			ICON=""
+		elif [[ $INTERFACE = "eth"* ]] ; then
+			ICON=""
+		elif [[ $INTERFACE = "wwan"* ]] ; then
+			ICON=""
+		elif [[ $INTERFACE = "tun"* ]] ; then
+			ICON=""
 		else 
-                        icon=$(echo "")
+                        ICON=""
 		fi
-		# Aggiungi l'interfaccia e l'IP alla variabile di uscita
-		output="$output $icon $ip"
+		# Aggiungi l'INTERFACE e l'IP alla variabile di uscita
+		OUTPUT="$OUTPUT $ICON $IP"
 	fi	
 done	
-if [[ -z "$output" ]] ; then
+if [[ -z "$OUTPUT" ]] ; then
 	# Colore rosso
-	COLOR=$(echo "#FF0000")
-        output=$(echo " Disconnected")
+	COLOR="#FF0000"
+        OUTPUT=" Disconnected"
 fi
 
-# Stampa l'output
-echo $output && echo "" && echo "$COLOR"
+# Stampa l'OUTPUT
+echo $OUTPUT && echo "" && echo "$COLOR"
 

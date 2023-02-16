@@ -1,14 +1,16 @@
 #!/bin/bash
 
-bluetooth=$(bluetooth | awk '{print $3}')
+BLUETOOTH=$(bluetooth | awk '{print $3}')
 
-if [[ $bluetooth = on ]]; then
-	echo " $bluetooth"
-else
-	echo " $bluetooth" && echo "" && echo "#ff0000"
+if [[ $BLUETOOTH = off ]]; then
+	COLOR="#ff0000"
 fi
 
+# Outuput
+echo " $BLUETOOTH" && echo "" && echo "$COLOR"
 
+# Mouse click event
 if [[ "${BLOCK_BUTTON}" -eq 1 ]]; then
         bluetooth toggle
 fi
+

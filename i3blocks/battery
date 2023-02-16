@@ -1,33 +1,39 @@
 #!/bin/bash
-BAT=$(echo "BAT0")
+
+# Prendere informazioni sulla batteria
+BAT="BAT0"
 BAT_PERC=$(cat /sys/class/power_supply/$BAT/capacity)
 BAT_STATUS=$(cat /sys/class/power_supply/$BAT/status)
 
+# Controllo se la batteria è presente
 if [[ -z "$BAT_PERC" ]] ; then
 	echo ""
 else
+	# Controllo se la batteria è in carica
 	if [[ $BAT_STATUS = Charging ]] ; then
-		#COLOR=$(echo "#4AF626")
-        	COLOR=$(echo "#FFFF00")
-		CHARGE=$(echo "")
+        	COLOR="#FFFF00"
+		CHARGE_ICON=" "
         else
         	if [[ ! $BAT_PERC -gt 30 ]] ; then
-        		COLOR=$(echo "#ff0000")
+        		COLOR="#ff0000"
         	else
-        		COLOR=$(echo "#ffffff")
+        		COLOR="#ffffff"
         	fi
 	fi
 
         if [[ $BAT_PERC -gt 80 ]] ; then
-        	echo "$CHARGE  $BAT_PERC%" && echo "" && echo $COLOR
+        	BAT_ICON=""
         elif [[ $BAT_PERC -gt 60 ]] ; then
-            	echo "$CHARGE  $BAT_PERC%" && echo "" && echo $COLOR
+            	BAT_ICON="" 
         elif [[ $BAT_PERC -gt 40 ]] ; then
-            	echo "$CHARGE  $BAT_PERC%" && echo "" && echo $COLOR
+            	BAT_ICON="" 
         elif [[ $BAT_PERC -gt 20 ]] ; then
-            	echo "$CHARGE  $BAT_PERC%" && echo "" && echo $COLOR
+            	BAT_ICON=""
         else
-            	echo "$CHARGE  $BAT_PERC%" && echo "" && echo $COLOR
+            	BAT_ICON=""
         fi
+        
+        # Output
+        echo "$CHARGE_ICON$BAT_ICON $BAT_PERC%" && echo "" && echo "$COLOR"
 fi
 

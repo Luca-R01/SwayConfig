@@ -3,7 +3,8 @@
 CPU=$(top -bn1 | grep "Cpu(s)" | awk '{print $2 + $4}')
 
 if [[ $CPU -gt 70 ]]; then
-	echo " $CPU%" && echo "" && echo "#ff0000"
-else
-	echo " $CPU%" && echo "" && echo "#ffffff"
+	COLOR="#ff0000"
 fi
+
+# Output
+echo " $CPU%" && echo "" && echo "$COLOR"

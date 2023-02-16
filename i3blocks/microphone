@@ -1,12 +1,17 @@
 #!/bin/bash
 
-mic_status=$(pactl get-source-mute @DEFAULT_SOURCE@ | awk '{print $2}')
-if [[ $mic_status = yes ]] ; then
-        echo "" && echo "" && echo "#ff0000"
+MIC=$(pactl get-source-mute @DEFAULT_SOURCE@ | awk '{print $2}')
+if [[ $MIC = yes ]] ; then
+        COLOR="ff0000"
+        ICON=""
 else
-        echo ""
+        ICON=""
 fi
 
+# Output
+echo "$ICON" && echo "" && echo "$COLOR"
+
+# Mouse click event
 if [[ "${BLOCK_BUTTON}" -eq 1 ]]; then
   pactl set-source-mute @DEFAULT_SOURCE@ toggle && pkill -RTMIN+12 i3blocks
 fi
