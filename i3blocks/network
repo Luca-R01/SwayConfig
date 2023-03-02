@@ -22,6 +22,8 @@ for INTERFACE in $INTERFACES; do
 			ICON=""
 		elif [[ $INTERFACE = "tun"* ]] ; then
 			ICON=""
+		elif [[ $INTERFACE = "docker"* ]] ; then
+			ICON=""
 		else 
                         ICON=""
 		fi
