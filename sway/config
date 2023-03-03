@@ -1,6 +1,6 @@
 # Sway configuration file
 
-###Apparance-----------------------------------------------------------------------------------------------------------------------------------------------------
+### Apparance-----------------------------------------------------------------------------------------------------------------------------------------------------
 
 # Status Bar:
 bar {
@@ -20,7 +20,7 @@ default_border pixel 5
 default_floating_border pixel 5
 hide_edge_borders none
 smart_borders off
-gaps inner 7
+gaps inner 9
 
 include colorscheme
 client.focused #5294e2 #5294e2 #5294e2 #5294e2
@@ -32,7 +32,7 @@ exec gsettings set org.gnome.desktop.interface icon-theme 'Papirus-Dark'
 exec gsettings set org.gnome.desktop.interface cursor-theme 'Adwaita'
 exec gsettings set org.gnome.desktop.interface font-name 'Jetbrains Mono Bold 10'
 
-###Variables------------------------------------------------------------------------------------------------------------------------------------------------------
+### Variables------------------------------------------------------------------------------------------------------------------------------------------------------
 
 # Logo key. Use Mod1 for Alt.
 set $mod Mod4
@@ -174,7 +174,7 @@ bindsym $mod+Shift+0 move container to workspace number 10
 # Note: workspaces can have any name you want, not just numbers.
 # We just use 1-10 as the default.
 
-###Startup Application-------------------------------------------------------------------------------------------------------------------------------------------
+### Startup Application-------------------------------------------------------------------------------------------------------------------------------------------
 
 # Start Kdeconnect
 exec 'kdeconnect-indicator'
