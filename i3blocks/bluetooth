@@ -14,7 +14,8 @@ echo " $STATUS" && echo "" && echo "$COLOR"
 
 # Mouse click event
 case $BLOCK_BUTTON in
-    1) bluetoothctl power off && notify-send "Bluetooth disattivato";;
-    3) bluetoothctl power on && notify-send "Bluetooth attivato";;
+    	1) bluetoothctl power off && notify-send "Bluetooth disattivato";;
+	2) blueman-manager;;
+    	3) bluetoothctl power on && notify-send "Bluetooth attivato";;
 esac
 

@@ -8,3 +8,4 @@ fi
 
 # Output
 echo " $RAM%" && echo "" && echo "$COLOR"
+

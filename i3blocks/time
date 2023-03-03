@@ -1,3 +1,8 @@
 #!/bin/bash
 
 date +' %a %d %b %Y  %H:%M'
+
+# Mouse click event
+case $BLOCK_BUTTON in
+        1) evolution;;
+esac
