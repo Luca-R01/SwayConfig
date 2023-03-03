@@ -1,0 +1,14 @@
+#!/bin/bash
+
+temp=$(optirun nvidia-smi --query-gpu=temperature.gpu --format=csv,noheader)
+
+if [[ $temp -gt 80 ]]; then
+        echo "+$temp°C" && echo "" && echo "#ff0000"
+elif [[ $temp -gt 65 ]] ; then
+        echo "+$temp°C" && echo "" && echo "#ffffff"
+elif [[ $temp -gt 50 ]] ; then
+        echo "+$temp°C" && echo "" && echo "#ffffff"
+else
+        echo "+$temp°C" && echo "" && echo "#ffffff"
+fi
+
