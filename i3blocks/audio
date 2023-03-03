@@ -24,8 +24,8 @@ fi
 echo "$ICON $AUDIO_PERC%" && echo "" && echo "$COLOR"
 
 # Mouse click event
-if [[ "${BLOCK_BUTTON}" -eq 1 ]]; then
-    	pactl set-sink-mute @DEFAULT_SINK@ toggle
-fi
+case $BLOCK_BUTTON in
+    1) pactl set-sink-mute @DEFAULT_SINK@ toggle;;
+esac
 
 

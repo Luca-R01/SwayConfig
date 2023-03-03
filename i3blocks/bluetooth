@@ -1,16 +1,20 @@
 #!/bin/bash
 
-BLUETOOTH=$(bluetooth | awk '{print $3}')
+status=$(bluetoothctl show | grep "Powered:" | awk '{print $2}')
 
-if [[ $BLUETOOTH = off ]]; then
+if [ "$status" = "no" ]; then
 	COLOR="#ff0000"
+	STATUS="off"
+else
+	STATUS="on"
 fi
 
-# Outuput
-echo " $BLUETOOTH" && echo "" && echo "$COLOR"
+# Output
+echo " $STATUS" && echo "" && echo "$COLOR"
 
 # Mouse click event
-if [[ "${BLOCK_BUTTON}" -eq 1 ]]; then
-        bluetooth toggle
-fi
+case $BLOCK_BUTTON in
+    1) bluetoothctl power off && notify-send "Bluetooth disattivato";;
+    3) bluetoothctl power on && notify-send "Bluetooth attivato";;
+esac
 

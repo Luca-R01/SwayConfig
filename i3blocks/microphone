@@ -12,7 +12,7 @@ fi
 echo "$ICON" && echo "" && echo "$COLOR"
 
 # Mouse click event
-if [[ "${BLOCK_BUTTON}" -eq 1 ]]; then
-  pactl set-source-mute @DEFAULT_SOURCE@ toggle && pkill -RTMIN+12 i3blocks
-fi
+case $BLOCK_BUTTON in
+    1) pactl set-source-mute @DEFAULT_SOURCE@ toggle && pkill -RTMIN+12 i3blocks;;
+esac
 
