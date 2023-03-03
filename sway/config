@@ -111,7 +111,8 @@ bindsym XF86Display exec wdisplays
 bindsym $mod+Return exec $TERM
 
 # Kill focused window
-bindsym alt+f4 kill	
+bindsym alt+f4 kill
+bindsym $mod+q kill	
 
 # Make the current focus fullscreen
 bindsym $mod+f fullscreen
@@ -120,7 +121,7 @@ bindsym $mod+f fullscreen
 bindsym $mod+d exec $menu
     
 # Logout menu
-bindsym $mod+q exec swaynag -f 'Jetbrains Mono bold' -t warning -m 'Power Menu' -B 'Riavvia' 'systemctl reboot' -B 'Spegni' 'systemctl poweroff' -B 'Esci' 'swaymsg exit'
+bindsym $mod+Escape exec swaynag -f 'Jetbrains Mono bold' -t warning -m 'Power Menu' -B 'Riavvia' 'systemctl reboot' -B 'Spegni' 'systemctl poweroff' -B 'Esci' 'swaymsg exit'
     
 # Lock
 bindsym $mod+l exec $LOCK 
