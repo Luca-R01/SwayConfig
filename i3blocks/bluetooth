@@ -2,6 +2,8 @@
 
 status=$(bluetoothctl show | grep "Powered:" | awk '{print $2}')
 
+devices=$(bluetoothctl info | grep "Device" | awk '{print $2}')
+
 if [ "$status" = "no" ]; then
 	COLOR="#FF0000"
 	STATUS="off"
@@ -20,6 +22,17 @@ case $BLOCK_BUTTON in
     		else
     			bluetoothctl power off && notify-send "Bluetooth disattivato"
     		fi	
+    	;;
+    	2)	if [[ -z "$devices" ]]; then
+    			notify-send "Nessun dispositivo Bluetooth connesso"
+		else
+    			message="Dispositivi Bluetooth connessi:"
+    			while read -r device; do
+        			name=$(bluetoothctl info "$device" | grep -b "Name" | cut -d ":" -f 3-)
+        			message="$message $name ($device)"
+    			done <<< "$devices"
+    			notify-send "$message"
+		fi
     	;;
 	3)	blueman-manager;;
 esac
