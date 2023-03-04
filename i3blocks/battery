@@ -15,9 +15,9 @@ else
 		CHARGE_ICON=" "
         else
         	if [[ ! $BAT_PERC -gt 30 ]] ; then
-        		COLOR="#ff0000"
+        		COLOR="#FF0000"
         	else
-        		COLOR="#ffffff"
+        		COLOR="#FFFFFF"
         	fi
 	fi
 
@@ -38,8 +38,14 @@ else
 fi
 
 # Mouse click event
+PROFILE=$(powerprofilesctl get)
 case $BLOCK_BUTTON in
-        1) powerprofilesctl set performance && notify-send "Profilo performance attivo";;
-        2) powerprofilesctl set balanced && notify-send "Profilo bilanciato attivo";;
-        3) powerprofilesctl set power-saver && notify-send "Profilo risparmio energetico attivo";;
+        1)	if [[ $PROFILE = "performance" ]] ; then
+        		powerprofilesctl set power-saver && notify-send "Profilo risparmio energetico attivo"
+        	elif [[ $PROFILE = "power-saver" ]] ; then
+        		powerprofilesctl set balanced && notify-send "Profilo bilanciato attivo"
+        	elif [[ $PROFILE = "balanced" ]] ; then
+        		powerprofilesctl set performance && notify-send "Profilo prestazioni attivo"
+        	fi
+        ;;
 esac

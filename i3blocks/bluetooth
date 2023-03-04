@@ -3,9 +3,10 @@
 status=$(bluetoothctl show | grep "Powered:" | awk '{print $2}')
 
 if [ "$status" = "no" ]; then
-	COLOR="#ff0000"
+	COLOR="#FF0000"
 	STATUS="off"
 else
+	COLOR="#FFFFFF"
 	STATUS="on"
 fi
 
@@ -14,8 +15,12 @@ echo " $STATUS" && echo "" && echo "$COLOR"
 
 # Mouse click event
 case $BLOCK_BUTTON in
-    	1) bluetoothctl power off && notify-send "Bluetooth disattivato";;
-	2) blueman-manager;;
-    	3) bluetoothctl power on && notify-send "Bluetooth attivato";;
+    	1)	if [[ $status = "no" ]] ; then
+    			bluetoothctl power on && notify-send "Bluetooth attivato"
+    		else
+    			bluetoothctl power off && notify-send "Bluetooth disattivato"
+    		fi	
+    	;;
+	3)	blueman-manager;;
 esac
 
