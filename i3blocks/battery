@@ -4,6 +4,7 @@
 BAT="BAT0"
 BAT_PERC=$(cat /sys/class/power_supply/$BAT/capacity)
 BAT_STATUS=$(cat /sys/class/power_supply/$BAT/status)
+PROFILE=$(powerprofilesctl get)
 
 # Controllo se la batteria è presente
 if [[ -z "$BAT_PERC" ]] ; then
@@ -38,7 +39,6 @@ else
 fi
 
 # Mouse click event
-PROFILE=$(powerprofilesctl get)
 case $BLOCK_BUTTON in
         1)	if [[ $PROFILE = "performance" ]] ; then
         		powerprofilesctl set power-saver && notify-send "Profilo risparmio energetico attivo"
@@ -48,4 +48,8 @@ case $BLOCK_BUTTON in
         		powerprofilesctl set performance && notify-send "Profilo prestazioni attivo"
         	fi
         ;;
+	3)	message=$(acpi)
+		message="$message. profilo:$PROFILE"
+		notify-send "$message"	
+	;;
 esac
