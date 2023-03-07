@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Ottieni tutte le INTERFACES di rete attive
-INTERFACES=$(ip -o link show | awk -F': ' '{print $2}' | grep -v 'lo')
+INTERFACES=$(ip -o link show | awk -F': ' '{print $2}')
 
 # Colore verde
 COLOR="#4AF626"
@@ -15,20 +15,14 @@ for INTERFACE in $INTERFACES; do
 	# Controllo che l'OUTPUT sia presente
 	if [[ ! -z $IP ]] ; then
 		if [[ $INTERFACE = "wlan"* ]] ; then
-			ICON=""
+			OUTPUT="$OUTPUT  $IP"
 		elif [[ $INTERFACE = "eth"* ]] ; then
-			ICON=""
+			OUTPUT="$OUTPUT  $IP"
 		elif [[ $INTERFACE = "wwan"* ]] ; then
-			ICON=""
+			OUTPUT="$OUTPUT  $IP"
 		elif [[ $INTERFACE = "tun"* ]] ; then
-			ICON=""
-		elif [[ $INTERFACE = "docker"* ]] ; then
-			ICON=""
-		else 
-                        ICON=""
+			OUTPUT="$OUTPUT  $IP"
 		fi
-		# Aggiungi l'INTERFACE e l'IP alla variabile di uscita
-		OUTPUT="$OUTPUT $ICON $IP"
 	fi	
 done	
 if [[ -z "$OUTPUT" ]] ; then
