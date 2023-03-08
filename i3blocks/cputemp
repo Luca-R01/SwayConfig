@@ -1,9 +1,10 @@
 #!/bin/bash
 
 TEMP=$(sensors | grep "Package id 0" | awk '{print $4}'| sed 's/^+//' | sed 's/°C//' | sed 's/\.0//')
+COLOR="#FFFFFF"
 
 if [[ $TEMP -gt 80 ]]; then
-	COLOR="ff0000"
+	COLOR="#FF0000"
 	ICON=""
 elif [[ $TEMP -gt 65 ]] ; then
 	ICON=""
@@ -15,3 +16,8 @@ fi
 
 # Output
 echo "$ICON+$TEMP°C" && echo "" && echo "$COLOR"
+
+# Mouse click event
+case $BLOCK_BUTTON in
+	1)	gnome-terminal -e htop
+esac

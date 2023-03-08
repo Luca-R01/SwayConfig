@@ -3,8 +3,15 @@
 CPU=$(top -bn1 | grep "Cpu(s)" | awk '{print $2 + $4}')
 
 if [[ $CPU -gt 70 ]]; then
-	COLOR="#ff0000"
+	COLOR="#FF0000"
+else
+	COLOR="#FFFFFF"
 fi
 
 # Output
 echo " $CPU%" && echo "" && echo "$COLOR"
+
+# Mouse click event
+case $BLOCK_BUTTON in
+	1)	foot -e htop
+esac

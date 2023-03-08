@@ -3,9 +3,16 @@
 RAM=$(free -m | awk 'NR==2{printf "%d%%", int($3*100/$2)}' | sed 's/%//')
 
 if [[ $RAM -gt 70 ]]; then
-	COLOR="#ff0000"
+	COLOR="#FF0000"
+else
+	COLOR="#FFFFFF"
 fi
 
 # Output
 echo " $RAM%" && echo "" && echo "$COLOR"
+
+# Mouse click event
+case $BLOCK_BUTTON in
+	1)	foot -e htop
+esac
 

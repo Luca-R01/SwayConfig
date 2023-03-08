@@ -3,7 +3,9 @@
 DISK=$(df -h / | awk '{print $5}' | tail -1 | tr -d '%')
 
 if [[ $DISK -gt 80 ]]; then
-	COLOR="#ff0000"
+	COLOR="#FF0000"
+else
+	COLOR="#FFFFFF"
 fi
 
 # Output
