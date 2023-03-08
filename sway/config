@@ -38,7 +38,7 @@ exec gsettings set org.gnome.desktop.interface font-name 'Jetbrains Mono Bold 10
 set $mod Mod4
 
 # Your preferred terminal emulator
-set $TERM gnome-terminal
+set $TERM foot
 
 # Your preferred application launcher
 set $menu wofi --show drun -I
