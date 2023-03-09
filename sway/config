@@ -15,7 +15,7 @@ bar {
     	}
 }
 
-#Borders
+# Borders
 default_border pixel 5
 default_floating_border pixel 5
 hide_edge_borders none
@@ -39,10 +39,14 @@ set $mod Mod4
 
 # Your preferred terminal emulator
 set $TERM foot
+exec 'gsettings set org.gnome.desktop.default-applications.terminal exec $TERM'
+exec 'gsettings set org.cinnamon.desktop.default-applications.terminal exec $TERM'
+exec 'export TERM=$TERM'
+exec 'export TERMINAL=$TERM'
 
 # Your preferred application launcher
-set $menu wofi --show drun -I
-set $dmenu dmenu_run -i -fn "JetBrains Mono" -nb "#000000" -nf "#ffffff" -sb "#5294e2" -sf "#000000"
+set $MENU wofi --show drun -I
+set $DMENU dmenu_run -i -fn "JetBrains Mono" -nb "#000000" -nf "#ffffff" -sb "#5294e2" -sf "#000000"
 
 # WOB config
 set $WOBSOCK $XDG_RUNTIME_DIR/wob.sock
@@ -101,10 +105,10 @@ bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
 
 # Extra
-bindsym XF86Search exec $menu
+bindsym XF86Search exec $MENU
 bindsym XF86Explorer exec nemo
 bindsym XF86Tools exec 'gedit $HOME/.config/sway/config'
-bindsym XF86LaunchA exec $dmenu
+bindsym XF86LaunchA exec $DMENU
 bindsym XF86Display exec wdisplays
 
 # Start a terminal
@@ -118,7 +122,7 @@ bindsym $mod+q kill
 bindsym $mod+f fullscreen
 
 # Start your launcher
-bindsym $mod+d exec $menu
+bindsym $mod+d exec $MENU
     
 # Logout menu
 bindsym $mod+Escape exec swaynag -f 'Jetbrains Mono bold' -t warning -m 'Power Menu' -B 'Riavvia' 'systemctl reboot' -B 'Spegni' 'systemctl poweroff' -B 'Esci' 'swaymsg exit'
