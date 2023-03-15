@@ -15,13 +15,14 @@ for INTERFACE in $INTERFACES; do
 	# Controllo che l'OUTPUT sia presente
 	if [[ ! -z $IP ]] ; then
 		if [[ $INTERFACE = "wlan"* ]] ; then
-			OUTPUT="$OUTPUT  $IP"
+			SSID=$(iw $INTERFACE info | grep "ssid" | awk '{print $2}')
+			OUTPUT="$OUTPUT   $SSID"
 		elif [[ $INTERFACE = "eth"* ]] ; then
-			OUTPUT="$OUTPUT  $IP"
+			OUTPUT="$OUTPUT   $IP"
 		elif [[ $INTERFACE = "wwan"* ]] ; then
-			OUTPUT="$OUTPUT  $IP"
+			OUTPUT="$OUTPUT   $IP"
 		elif [[ $INTERFACE = "tun"* ]] ; then
-			OUTPUT="$OUTPUT  $IP"
+			OUTPUT="$OUTPUT   $IP"
 		fi
 	fi	
 done	
