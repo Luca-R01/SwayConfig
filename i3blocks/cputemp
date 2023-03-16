@@ -17,7 +17,3 @@ fi
 # Output
 echo "$ICON+$TEMP°C" && echo "" && echo "$COLOR"
 
-# Mouse click event
-case $BLOCK_BUTTON in
-	1)	gnome-terminal -e htop
-esac

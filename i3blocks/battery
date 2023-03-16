@@ -49,7 +49,7 @@ case $BLOCK_BUTTON in
         	fi
         ;;
 	3)	message=$(acpi)
-		message="$message. profilo:$PROFILE"
+		message="$message Profilo:$PROFILE"
 		notify-send "$message"	
 	;;
 esac

@@ -23,7 +23,7 @@ case $BLOCK_BUTTON in
     			bluetoothctl power off && notify-send "Bluetooth disattivato"
     		fi	
     	;;
-    	2)	if [[ -z "$devices" ]]; then
+    	3)	if [[ -z "$devices" ]]; then
     			notify-send "Nessun dispositivo Bluetooth connesso"
 		else
     			message="Dispositivi Bluetooth connessi:"
@@ -34,6 +34,5 @@ case $BLOCK_BUTTON in
     			notify-send "$message"
 		fi
     	;;
-	3)	blueman-manager;;
 esac
 

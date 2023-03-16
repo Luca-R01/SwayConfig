@@ -15,7 +15,7 @@ for INTERFACE in $INTERFACES; do
 	# Controllo che l'OUTPUT sia presente
 	if [[ ! -z $IP ]] ; then
 		if [[ $INTERFACE = "wlan"* ]] ; then
-			SSID=$(iw $INTERFACE info | grep "ssid" | awk '{print $2}')
+			SSID=$(iw $INTERFACE info | grep "ssid" | sed 's/^[[:space:]]*ssid //')
 			OUTPUT="$OUTPUT   $SSID"
 		elif [[ $INTERFACE = "eth"* ]] ; then
 			OUTPUT="$OUTPUT   $IP"
@@ -34,8 +34,3 @@ fi
 
 # Stampa l'OUTPUT
 echo $OUTPUT && echo "" && echo "$COLOR"
-
-# Mouse click event
-case $BLOCK_BUTTON in
-        1) iwgtk;;
-esac
