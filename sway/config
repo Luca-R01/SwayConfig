@@ -121,8 +121,9 @@ bindsym $mod+f fullscreen
 bindsym $mod+d exec $MENU
     
 # Logout menu
-bindsym $mod+Escape exec swaynag -f 'Jetbrains Mono bold' -t warning -m 'Power Menu' -B 'Riavvia' 'systemctl reboot' -B 'Spegni' 'systemctl poweroff' -B 'Esci' 'swaymsg exit'
-    
+#bindsym $mod+Escape exec swaynag -f 'Jetbrains Mono bold' -t warning -m 'Power Menu' -B 'Riavvia' 'systemctl reboot' -B 'Spegni' 'systemctl poweroff' -B 'Esci' 'swaymsg exit'
+bindsym $mod+Escape exec nwg-bar 
+   
 # Lock
 bindsym $mod+l exec $LOCK 
     
