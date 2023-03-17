@@ -1,21 +1,21 @@
 [
   {
-    "label": "Lock",
+    "label": "Blocca",
     "exec": "swaylock -l --indicator-radius 100 --ring-color 0066ff --key-hl-color 2e2e2e --image $HOME/.config/sway/wallpaper.jpg",
     "icon": "/usr/share/nwg-bar/images/system-lock-screen.svg"
   },
   {
-    "label": "Logout",
+    "label": "Esci",
     "exec": "swaymsg exit",
     "icon": "/usr/share/nwg-bar/images/system-log-out.svg"
   },
   {
-    "label": "Reboot",
+    "label": "Riavvia",
     "exec": "systemctl reboot",
     "icon": "/usr/share/nwg-bar/images/system-reboot.svg"
   },
   {
-    "label": "Shutdown",
+    "label": "Spegni",
     "exec": "systemctl -i poweroff",
     "icon": "/usr/share/nwg-bar/images/system-shutdown.svg"
   }
