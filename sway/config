@@ -22,6 +22,7 @@ hide_edge_borders none
 smart_borders off
 gaps inner 9
 
+# Workspace selector
 include colorscheme
 client.focused #5294e2 #5294e2 #5294e2 #5294e2
 client.unfocused #4b5162 #4b5162 #4b5162 #4b5162
@@ -112,7 +113,7 @@ bindsym $mod+Return exec $TERM
 
 # Kill focused window
 bindsym alt+f4 kill
-bindsym $mod+q kill	
+bindsym $mod+Shift+q kill	
 
 # Make the current focus fullscreen
 bindsym $mod+f fullscreen
@@ -133,7 +134,7 @@ bindsym Print exec grim && notify-send "Screenshot salvato"
 # Reload the configuration file
 bindsym $mod+Shift+c reload
 
-#Resize window with mouse    
+# Resize window with mouse    
 floating_modifier $mod normal
 
 # Moving around:
