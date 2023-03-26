@@ -12,38 +12,38 @@ separator_block_width=15
 command=$HOME/.config/i3blocks/$BLOCK_NAME
 
 [microphone]
-interval=1
+interval=5
 signal=12
 separator=false
 
 [audio]
-interval=1
+interval=5
 signal=11
 
 [bluetooth]
-interval=1
+interval=5
 
 [network]
-interval=1 
+interval=5 
 
 [disk]
-interval=1
+interval=5
 separator=false
 
 [ram]
-interval=1
+interval=5
 separator=false
 
 [cpu]
-interval=1
+interval=5
 separator=false
 
 [cputemp]
-interval=1
+interval=5
 separator=false
 
 [battery]
-interval=1
+interval=5
 
 [time]
 color=#5294e2
