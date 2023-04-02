@@ -2,7 +2,7 @@
 
 CPU=$(top -bn1 | grep "Cpu(s)" | awk '{print $2 + $4}')
 
-if [[ $CPU -gt 70 ]]; then
+if [[ $CPU -gt 79 ]]; then
 	COLOR="#FF0000"
 else
 	COLOR="#FFFFFF"
