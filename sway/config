@@ -20,7 +20,7 @@ default_border pixel 5
 default_floating_border pixel 5
 hide_edge_borders none
 smart_borders off
-gaps inner 9
+gaps inner 7
 
 # Workspace selector
 include colorscheme
@@ -39,7 +39,7 @@ exec gsettings set org.gnome.desktop.interface font-name 'Jetbrains Mono Bold 10
 set $MOD Mod4
 
 # Your preferred terminal emulator
-set $TERM foot
+set $TERM gnome-terminal
 
 # Your preferred File Manager
 set $FILEMANAGER nemo
