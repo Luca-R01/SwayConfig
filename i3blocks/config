@@ -12,12 +12,12 @@ separator_block_width=15
 command=$HOME/.config/i3blocks/$BLOCK_NAME
 
 [microphone]
-interval=5
+interval=1
 signal=12
 separator=false
 
 [audio]
-interval=5
+interval=1
 signal=11
 
 [bluetooth]
@@ -35,7 +35,7 @@ interval=5
 separator=false
 
 [cpu]
-interval=5
+interval=1
 separator=false
 
 [cputemp]
