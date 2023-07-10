@@ -1,3 +1,5 @@
 #!/bin/bash
 
-echo " $USER"
+username=$(getent passwd $USER | cut -d ':' -f 5 | cut -d ',' -f 1)
+
+echo " $username"
