@@ -5,7 +5,7 @@
 # Status Bar:
 bar {
     	position top
-	font pango: Jetbrains Mono Bold 10
+	font pango: Noto Sans Mono Bold 10
 	status_command i3blocks
     	colors {
         	statusline #ffffff
@@ -21,9 +21,6 @@ default_floating_border pixel 5
 hide_edge_borders none
 smart_borders off
 gaps inner 7
-
-# Workspace selector
-include colorscheme
 client.focused #5294e2 #5294e2 #5294e2 #5294e2
 client.unfocused #4b5162 #4b5162 #4b5162 #4b5162
 
@@ -31,7 +28,7 @@ client.unfocused #4b5162 #4b5162 #4b5162 #4b5162
 exec gsettings set org.gnome.desktop.interface gtk-theme 'Arc-Dark-solid'
 exec gsettings set org.gnome.desktop.interface icon-theme 'Papirus-Dark'
 exec gsettings set org.gnome.desktop.interface cursor-theme 'Adwaita'
-exec gsettings set org.gnome.desktop.interface font-name 'Jetbrains Mono Bold 10'
+exec gsettings set org.gnome.desktop.interface font-name 'Noto Sans Regular 10'
 
 ### Variables------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -181,10 +178,7 @@ bindsym $MOD+Shift+0 move container to workspace number 10
 # Note: workspaces can have any name you want, not just numbers.
 # We just use 1-10 as the default.
 
-### Startup Application-------------------------------------------------------------------------------------------------------------------------------------------
-
-# Start Kdeconnect
-exec 'kdeconnect-indicator'
+### Startup Application--------------------------------------------------------------------------------------------------------------------------------------------
 
 # PolKit
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
