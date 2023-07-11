@@ -29,6 +29,7 @@ exec gsettings set org.gnome.desktop.interface gtk-theme 'Arc-Dark-solid'
 exec gsettings set org.gnome.desktop.interface icon-theme 'Papirus-Dark'
 exec gsettings set org.gnome.desktop.interface cursor-theme 'Adwaita'
 exec gsettings set org.gnome.desktop.interface font-name 'Noto Sans Regular 10'
+exec gsettings set org.gnome.desktop.wm.preferences button-layout ''
 
 ### Variables------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -44,7 +45,7 @@ exec xdg-mime default nemo.desktop inode/directory application/x-gnome-saved-sea
 
 # Your preferred application launcher
 set $MENU wofi --show drun -I
-set $DMENU dmenu_run -i -fn "JetBrains Mono" -nb "#000000" -nf "#ffffff" -sb "#5294e2" -sf "#000000"
+set $DMENU dmenu_run -i -fn "Noto Sans Mono Regular" -nb "#000000" -nf "#ffffff" -sb "#5294e2" -sf "#000000"
 
 # WOB config
 set $WOBSOCK $XDG_RUNTIME_DIR/wob.sock
@@ -64,11 +65,19 @@ exec 'gammastep -l geoclue2'
 
 ### Input configuration-------------------------------------------------------------------------------------------------------------------------------------------
 
+# Trackpoint
+input "type:pointer" {
+	accel_profile flat
+	pointer_accel 0.5
+}
+
 # Keyboard layout
-input * xkb_layout "it"
+input type:keyboard {
+	xkb_layout "it"
+}
 
 # Touchpad
-input "1739:0:Synaptics_tm2964-001" {
+input "type:touchpad" {
 	natural_scroll enabled
 }
 
@@ -123,8 +132,7 @@ bindsym $MOD+f fullscreen
 bindsym $MOD+d exec $MENU
     
 # Logout menu
-#bindsym $MOD+Escape exec swaynag -f 'Jetbrains Mono bold' -t warning -m 'Power Menu' -B 'Riavvia' 'systemctl reboot' -B 'Spegni' 'systemctl poweroff' -B 'Esci' 'swaymsg exit'
-bindsym $MOD+Escape exec nwg-bar 
+bindsym $MOD+Escape exec '/home/luca/.config/wofi/wofi-power.sh'
    
 # Lock
 bindsym $MOD+l exec $LOCK 
