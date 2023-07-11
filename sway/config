@@ -132,7 +132,20 @@ bindsym $MOD+f fullscreen
 bindsym $MOD+d exec $MENU
     
 # Logout menu
-bindsym $MOD+Escape exec '/home/luca/.config/wofi/wofi-power.sh'
+bindsym $MOD+Escape exec swaynag -m "Seleziona un'opzione:" \
+  -b " Logout" "swaymsg exit" \
+  -b " Spegni" "systemctl poweroff" \
+  -b " Riavvia" "systemctl reboot" \
+  -b " Sospendi" "systemctl suspend" \
+  -b " Blocca" "$LOCK" \
+  -b " Ricarica Sway" "swaymsg reload" \
+  --background "#000000" \
+  --border "#555753" \
+  --button-background "#4e4e4e" \
+  --text "#FFFFFF" \
+  --button-text "#FFFFFF" \
+  --border-bottom "000000"
+
    
 # Lock
 bindsym $MOD+l exec $LOCK 
