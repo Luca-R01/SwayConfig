@@ -26,7 +26,9 @@ echo "$ICON $AUDIO_PERC%" && echo "" && echo "$COLOR"
 
 # Mouse click event
 case $BLOCK_BUTTON in
-    1) pactl set-sink-mute @DEFAULT_SINK@ toggle;;
+	1) pactl set-sink-volume @DEFAULT_SINK@ +5% && pkill -RTMIN+11 i3blocks ;;
+	2) pactl set-sink-mute @DEFAULT_SINK@ toggle;;
+	3) pactl set-sink-volume @DEFAULT_SINK@ -5% && pkill -RTMIN+11 i3blocks ;;
 esac
 
 
