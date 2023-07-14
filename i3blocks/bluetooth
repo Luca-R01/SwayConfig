@@ -4,12 +4,12 @@ status=$(bluetoothctl show | grep "Powered:" | awk '{print $2}')
 
 devices=$(bluetoothctl info | grep "Device" | awk '{print $2}')
 
-if [ "$status" = "no" ]; then
-	COLOR="#FF0000"
-	STATUS="off"
-else
+if [ "$status" = "yes" ]; then
 	COLOR="#FFFFFF"
-	STATUS="on"
+        STATUS="on"
+else
+        COLOR="#FF0000"
+        STATUS="off"
 fi
 
 # Output
