@@ -11,6 +11,9 @@ separator=true
 separator_block_width=15
 command=$HOME/.config/i3blocks/$BLOCK_NAME
 
+[gammastep]
+interval=5
+
 [microphone]
 interval=1
 signal=12
@@ -49,6 +52,6 @@ interval=5
 color=#5294e2
 interval=1
 
-[user]
-color=#5294e2
-interval=once
+#[user]
+#color=#5294e2
+#interval=once

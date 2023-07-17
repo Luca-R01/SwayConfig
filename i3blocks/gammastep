@@ -1,0 +1,26 @@
+#!/usr/bin/bash
+
+GAMMASTEP_STATUS=$(systemctl --user status gammastep | grep "running")
+
+if [[ ! -z $GAMMASTEP_STATUS ]] ; then
+	ICON=""
+	CMD="stop"
+	COLOR="#FFFFFF"
+	MSG="Gammastep è stato disattivato"
+else
+	ICON=""
+	COLOR="#FF0000"
+	CMD="start"
+	MSG="Gammastep è stato attivato"
+fi
+
+#Output
+echo "$ICON" && echo "" && echo "$COLOR"
+
+# Mouse click event
+case $BLOCK_BUTTON in
+	1)	systemctl --user $CMD gammastep && notify-send "$MSG" 
+	;;
+	3)	gammastep -p | notify-send -u low "Gamma Step Info"
+	;;
+esac
