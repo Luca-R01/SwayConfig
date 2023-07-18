@@ -4,16 +4,16 @@
 
 # Status Bar:
 bar {
-    	position top
+   	position top
 	font pango: Noto Sans Mono Bold 10
 	icon_theme Papirus-Dark
 	status_command i3blocks
-    	colors {
-        	statusline #ffffff
-        	background #000000
-        	inactive_workspace #000000 #000000 #ffffff
+   	colors {
+        statusline #ffffff
+        background #000000
+        inactive_workspace #000000 #000000 #ffffff
 		focused_workspace #5294e2 #5294e2 #000000
-    	}
+    }
 }
 
 # Borders
