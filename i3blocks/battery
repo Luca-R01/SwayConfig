@@ -7,51 +7,45 @@ BAT_STATUS=$(cat /sys/class/power_supply/$BAT/status)
 PROFILE=$(powerprofilesctl get)
 
 # Controllo se la batteria è presente
-if [[ -z "$BAT_PERC" ]] ; then
+if [[ -z "$BAT_PERC" ]]; then
 	echo ""
-else
-	# Controllo se la batteria è in carica
-	if [[ $BAT_STATUS = Charging ]] ; then
-        	COLOR="#FFFF00"
-		CHARGE_ICON=" "
-	elif [[ $BAT_STATUS = Full ]] ; then
-		COLOR="#4AF626"
-        else
-        	if [[ ! $BAT_PERC -gt 30 ]] ; then
-        		COLOR="#FF0000"
-        	else
-        		COLOR="#FFFFFF"
-        	fi
-	fi
-
-        if [[ $BAT_PERC -gt 80 ]] ; then
-        	BAT_ICON=""
-        elif [[ $BAT_PERC -gt 60 ]] ; then
-            	BAT_ICON="" 
-        elif [[ $BAT_PERC -gt 40 ]] ; then
-            	BAT_ICON="" 
-        elif [[ $BAT_PERC -gt 20 ]] ; then
-            	BAT_ICON=""
-        else
-            	BAT_ICON=""
-        fi
-        
-        # Output
-        echo "$CHARGE_ICON$BAT_ICON $BAT_PERC%" && echo "" && echo "$COLOR"
+	exit 0
 fi
+
+# Impostazioni predefinite
+COLOR="#FFFFFF"
+
+# Controllo dello stato della batteria
+if [[ $BAT_STATUS = Charging ]]; then
+	COLOR="#FFFF00"
+	CHARGE_ICON=" "
+elif [[ $BAT_STATUS = Full ]]; then
+	COLOR="#4AF626"
+elif [[ $BAT_PERC -le 30 ]]; then
+	COLOR="#FF0000"
+fi
+
+# Calcolo dell'icona della batteria
+if [[ $BAT_PERC -le 20 ]]; then
+	BAT_ICON=""
+elif [[ $BAT_PERC -le 40 ]]; then
+	BAT_ICON=""
+elif [[ $BAT_PERC -le 60 ]]; then
+	BAT_ICON=""
+elif [[ $BAT_PERC -le 80 ]]; then
+	BAT_ICON=""
+else
+	BAT_ICON=""
+fi
+
+# Output
+echo "$CHARGE_ICON$BAT_ICON $BAT_PERC%" && echo "" && echo "$COLOR"
 
 # Mouse click event
 case $BLOCK_BUTTON in
-        1)	if [[ $PROFILE = "performance" ]] ; then
-        		powerprofilesctl set power-saver && notify-send "Profilo risparmio energetico attivo"
-        	elif [[ $PROFILE = "power-saver" ]] ; then
-        		powerprofilesctl set balanced && notify-send "Profilo bilanciato attivo"
-        	elif [[ $PROFILE = "balanced" ]] ; then
-        		powerprofilesctl set performance && notify-send "Profilo prestazioni attivo"
-        	fi
-        ;;
-	3)	message=$(acpi)
+	3)
+		message=$(acpi)
 		message="$message Profilo:$PROFILE"
-		notify-send "$message"	
-	;;
+		notify-send "$message"
+		;;
 esac
