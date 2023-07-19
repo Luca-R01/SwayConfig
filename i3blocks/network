@@ -34,3 +34,13 @@ fi
 
 # Stampa l'OUTPUT
 echo $OUTPUT && echo "" && echo "$COLOR"
+
+# Mouse click event
+case $BLOCK_BUTTON in
+	3)
+		PUBLIC_IP=$(curl -s ipinfo.io/ip)
+		LOCAL_IP=$(hostname -i)
+		notify-send "IP pubblico:  $PUBLIC_IP
+IP locale:  $LOCAL_IP" 
+	;;
+esac
