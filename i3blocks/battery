@@ -45,7 +45,8 @@ echo "$CHARGE_ICON$BAT_ICON $BAT_PERC%" && echo "" && echo "$COLOR"
 case $BLOCK_BUTTON in
 	3)
 		message=$(acpi)
-		message="$message Profilo:$PROFILE"
+		message="$message 
+Profilo:  $PROFILE"
 		notify-send "$message"
 		;;
 esac

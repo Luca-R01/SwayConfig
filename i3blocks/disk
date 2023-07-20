@@ -10,3 +10,18 @@ fi
 
 # Output
 echo " $DISK%" && echo "" && echo "$COLOR"
+
+# Mouse click event
+case $BLOCK_BUTTON in
+	3)
+		disk_info=$(df -h / | grep '/')
+		
+		# Estrai i valori dello spazio utilizzato e dello spazio totale usando awk
+		spazio_utilizzato=$(echo "$disk_info" | awk '{print $3}')
+		spazio_totale=$(echo "$disk_info" | awk '{print $2}')
+	
+		# Stampa l'output desiderato
+		notify-send	"Spazio su disco:
+$spazio_utilizzato / $spazio_totale "
+	;;
+esac

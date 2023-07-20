@@ -11,3 +11,17 @@ fi
 # Output
 echo " $RAM%" && echo "" && echo "$COLOR"
 
+# Mouse click event
+case $BLOCK_BUTTON in
+	3)
+		ram_info=$(free -m | grep Mem)
+	
+		# Estrai i valori della RAM utilizzata e della RAM totale usando awk
+		ram_utilizzata=$(echo "$ram_info" | awk '{print $3}')
+		ram_massima=$(echo "$ram_info" | awk '{print $2}')
+	
+		# Stampa l'output desiderato
+		notify-send	"Ram:
+$ram_utilizzata MB / $ram_massima MB"
+	;;
+esac
