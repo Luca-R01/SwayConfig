@@ -2,12 +2,12 @@
 
 # Colori dell'indicatore di blocco schermo
 inside-color=404552
-ring-color=5294e2
-line-color=5294e2
-separator-color=5294e2
+ring-color=383c4a
+line-color=383c4a
+separator-color=383c4a
 text-color=FFFFFF
-key-hl-color=404552
-bs-hl-color=404552
+key-hl-color=5294e2
+bs-hl-color=bf616a
 caps-lock-bs-hl-color=5294e2
 caps-lock-key-hl-color=5294e2
 inside-clear-color=404552
