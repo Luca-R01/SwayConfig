@@ -1,6 +1,6 @@
-background-color=#000000
+background-color=#383c4a
 border-color=#5294e2
 border-size=5
 font=Noto Sans Regular 10
 on-notify=exec mpv /usr/share/sounds/freedesktop/stereo/message.oga
-margin=9
+margin=7
