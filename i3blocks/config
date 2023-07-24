@@ -31,19 +31,16 @@ interval=5
 
 [disk]
 interval=5
-separator=false
 
 [ram]
 interval=5
-separator=false
 
 [cpu]
-interval=1
+interval=3
 separator=false
 
 [cputemp]
 interval=5
-separator=false
 
 [battery]
 interval=5
