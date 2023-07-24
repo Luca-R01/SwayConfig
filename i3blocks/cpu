@@ -1,40 +1,11 @@
 #!/bin/bash
 
-# Default values
-t_warn=${T_WARN:-50}
-t_crit=${T_CRIT:-80}
-cpu_usage=-1
-label=${LABEL:-""}
-color_normal="#FFFFFF"  # Bianco
-color_warn="#FFFFFF"    # Bianco
-color_crit="#FFFFFF"    # Bianco
+CPU_USAGE=$(top -bn 2 -d 1 | grep '^%Cpu' | tail -n 1 | awk '{print 100 - $8}')
 
-function help {
-    echo "Usage: cpu_usage [-w <warning>] [-c <critical>]"
-    echo "-w <percent>: warning threshold to become yellow"
-    echo "-c <percent>: critical threshold to become red"
-    exit 0
-}
+COLOR="#FFFFFF"
+if [[ CPU_USAGE -gt 80 ]] ; then
+	COLOR="#FF0000"
+fi
 
-while getopts "hw:c:" opt; do
-    case "$opt" in
-        h) help ;;
-        w) t_warn=$OPTARG ;;
-        c) t_crit=$OPTARG ;;
-        \?) help ;;
-    esac
-done
-
-# Get CPU usage
-export LC_ALL="en_US"  # If mpstat is not run under en_US locale, things may break, so make sure it is
-cpu_usage=$(mpstat 1 1 | awk '$12 ~ /^[0-9.]+$/ { print 100 - $12 }')
-
-[[ "$cpu_usage" == "-1" ]] && echo "Can't find CPU information" && exit 1
-
-# Print short_text, full_text
-printf " ${label}%.0f%%\n" "$cpu_usage"
-
-# Print color (always white)
-echo "$color_normal"
-
-exit 0
+# OUTPUT
+echo " $CPU_USAGE%" && echo "" && echo "$COLOR"
