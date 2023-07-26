@@ -29,18 +29,9 @@ interval=5
 [network]
 interval=5 
 
-[disk]
-interval=5
-
-[ram]
-interval=5
-
-[cpu]
-interval=3
-separator=false
-
 [cputemp]
 interval=5
+separator=false
 
 [battery]
 interval=5
@@ -49,6 +40,3 @@ interval=5
 color=#5294e2
 interval=1
 
-#[user]
-#color=#5294e2
-#interval=once
