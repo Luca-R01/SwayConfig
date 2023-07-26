@@ -12,7 +12,7 @@ bar {
         statusline #ffffff
         background #000000
         inactive_workspace #000000 #000000 #ffffff
-		focused_workspace #000000 #000000 #5294e2
+		focused_workspace #000000 #000000 #8ab4f8
     }
 }
 
@@ -22,8 +22,8 @@ default_floating_border pixel 5
 hide_edge_borders none
 smart_borders off
 gaps inner 7
-client.focused #5294e2 #5294e2 #5294e2 #5294e2
-client.unfocused #4b5162 #4b5162 #4b5162 #4b5162
+client.focused #8ab4f8 #8ab4f8 #8ab4f8 #8ab4f8
+client.unfocused #1e1e1e #1e1e1e #1e1e1e #1e1e1e
 
 # GTK Themes
 exec gsettings set org.gnome.desktop.interface gtk-theme 'Materia-dark-compact'
@@ -46,7 +46,7 @@ exec xdg-mime default nemo.desktop inode/directory application/x-gnome-saved-sea
 
 # Your preferred application launcher
 set $MENU wofi --show drun -I
-set $DMENU dmenu_run -i -fn "Noto Sans Mono Bold" -nb "#000000" -nf "#ffffff" -sb "#5294e2" -sf "#000000"
+set $DMENU dmenu_run -i -fn "Noto Sans Mono Bold" -nb "#000000" -nf "#ffffff" -sb "#8ab4f8" -sf "#000000"
 
 # WOB config
 set $WOBSOCK $XDG_RUNTIME_DIR/wob.sock
@@ -140,8 +140,8 @@ bindsym $MOD+Escape exec swaynag -m "Seleziona un'opzione:" \
   -b " Blocca" "$LOCK" \
   -b " Ricarica Sway" "swaymsg reload" \
   --background "#000000" \
-  --border "#555753" \
-  --button-background "#4e4e4e" \
+  --border "#1e1e1e" \
+  --button-background "#1e1e1e" \
   --text "#FFFFFF" \
   --button-text "#FFFFFF" \
   --border-bottom "000000"
