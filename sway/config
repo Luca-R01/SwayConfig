@@ -12,7 +12,7 @@ bar {
         statusline #ffffff
         background #000000
         inactive_workspace #000000 #000000 #ffffff
-		focused_workspace #5294e2 #5294e2 #000000
+		focused_workspace #000000 #000000 #5294e2
     }
 }
 
@@ -26,8 +26,8 @@ client.focused #5294e2 #5294e2 #5294e2 #5294e2
 client.unfocused #4b5162 #4b5162 #4b5162 #4b5162
 
 # GTK Themes
-exec gsettings set org.gnome.desktop.interface gtk-theme 'Arc-Dark-solid'
-exec gsettings set org.gnome.desktop.interface icon-theme 'Papirus-Dark'
+exec gsettings set org.gnome.desktop.interface gtk-theme 'Materia-dark-compact'
+exec gsettings set org.gnome.desktop.interface icon-theme 'Obsidian-Aqua'
 exec gsettings set org.gnome.desktop.interface cursor-theme 'Adwaita'
 exec gsettings set org.gnome.desktop.interface font-name 'Noto Sans Regular 10'
 exec gsettings set org.gnome.desktop.wm.preferences button-layout ''
@@ -173,6 +173,9 @@ bindsym $MOD+Shift+Right move right
 
 # Toggle the current focus between tiling and floating mode
 bindsym $MOD+Shift+space floating toggle
+
+# Clipboard manager
+bindsym $MOD+V exec copyq
 
 ### Workspaces----------------------------------------------------------------------------------------------------------------------------------------------------
 
