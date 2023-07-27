@@ -29,7 +29,7 @@ done
 if [[ -z "$OUTPUT" ]] ; then
 	# Colore rosso
 	COLOR="#FF0000"
-	OUTPUT=" Disconnected"
+	OUTPUT=" OFFLINE"
 fi
 
 # Stampa l'OUTPUT
