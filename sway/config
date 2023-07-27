@@ -6,7 +6,7 @@
 bar {
    	position top
 	font pango: Hack Bold 10
-	icon_theme Papirus-Dark
+	icon_theme Obsidian-Aqua
 	status_command i3blocks
    	colors {
         statusline #ffffff
