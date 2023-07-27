@@ -7,36 +7,63 @@
 
 
 # Global properties
-separator=true
+separator=false
 separator_block_width=15
 command=$HOME/.config/i3blocks/$BLOCK_NAME
+
+[separator]
+full_text=[
+color=#666666
 
 [gammastep]
 interval=5
 
+[separator]
+full_text=][
+color=#666666
+
 [microphone]
 interval=1
 signal=12
-separator=false
 
 [audio]
 interval=1
 signal=11
 
+[separator]
+full_text=][
+color=#666666
+
 [bluetooth]
 interval=5
+
+[separator]
+full_text=][
+color=#666666
 
 [network]
 interval=5 
 
+[separator]
+full_text=][
+color=#666666
+
 [cputemp]
 interval=5
-separator=false
 
 [battery]
 interval=5
 
+[separator]
+full_text=][
+color=#666666
+
 [time]
 color=#8ab4f8
 interval=1
+
+[separator]
+full_text=]
+color=#666666
+separator_block_width=5
 
