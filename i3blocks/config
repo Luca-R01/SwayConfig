@@ -65,5 +65,5 @@ interval=1
 [separator]
 full_text=]
 color=#666666
-separator_block_width=5
+separator_block_width=1
 
