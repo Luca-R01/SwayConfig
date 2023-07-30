@@ -121,13 +121,6 @@ bindsym XF86Display exec wdisplays
 # Start a terminal
 bindsym $MOD+Return exec $TERM
 
-# Kill focused window
-bindsym alt+f4 kill
-bindsym $MOD+Shift+q kill	
-
-# Make the current focus fullscreen
-bindsym $MOD+f fullscreen
-
 # Start your launcher
 bindsym $MOD+d exec $MENU
     
@@ -156,6 +149,15 @@ bindsym Print exec grim && notify-send "Screenshot salvato"
 # Reload the configuration file
 bindsym $MOD+Shift+c reload
 
+### WINDOW KEYBINDS
+
+# Kill focused window
+bindsym alt+f4 kill
+bindsym $MOD+Shift+q kill	
+
+# Make the current focus fullscreen
+bindsym $MOD+f fullscreen
+
 # Resize window with mouse    
 floating_modifier $MOD normal
 
@@ -173,9 +175,6 @@ bindsym $MOD+Shift+Right move right
 
 # Toggle the current focus between tiling and floating mode
 bindsym $MOD+Shift+space floating toggle
-
-# Clipboard manager
-bindsym $MOD+V exec copyq
 
 ### Workspaces----------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -209,6 +208,9 @@ bindsym $MOD+Shift+0 move container to workspace number 10
 
 # Mako for notification
 exec 'systemctl --user start mako'
+
+# Clipboard manager
+exec copyq
 
 # PolKit
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
