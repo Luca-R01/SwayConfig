@@ -26,11 +26,13 @@ client.focused #8ab4f8 #8ab4f8 #8ab4f8 #8ab4f8
 client.unfocused #1e1e1e #1e1e1e #1e1e1e #1e1e1e
 
 # GTK Themes
-exec gsettings set org.gnome.desktop.interface gtk-theme 'Materia-dark-compact'
-exec gsettings set org.gnome.desktop.interface icon-theme 'Obsidian-Aqua'
-exec gsettings set org.gnome.desktop.interface cursor-theme 'Adwaita'
-exec gsettings set org.gnome.desktop.interface font-name 'Hack Regular 10'
-exec gsettings set org.gnome.desktop.wm.preferences button-layout ''
+exec_always {
+    gsettings set org.gnome.desktop.interface gtk-theme 'Materia-dark-compact'
+    gsettings set org.gnome.desktop.interface icon-theme 'Obsidian-Aqua'
+    gsettings set org.gnome.desktop.interface cursor-theme 'Adwaita'
+    gsettings set org.gnome.desktop.interface font-name 'Hack Regular 10'
+    gsettings set org.gnome.desktop.wm.preferences button-layout ''
+}
 
 ### Variables------------------------------------------------------------------------------------------------------------------------------------------------------
 
