@@ -23,7 +23,8 @@ hide_edge_borders none
 smart_borders off
 gaps inner 7
 client.focused #8ab4f8 #8ab4f8 #8ab4f8 #8ab4f8
-client.unfocused #1e1e1e #1e1e1e #1e1e1e #1e1e1e
+client.focused_inactive #808080 #808080 #808080 #808080
+client.unfocused #808080 #808080 #808080 #808080
 
 # GTK Themes
 exec_always {
@@ -212,7 +213,7 @@ bindsym $MOD+Shift+0 move container to workspace number 10
 exec 'systemctl --user start mako'
 
 # Clipboard manager
-exec copyq
+#exec copyq
 
 # PolKit
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
