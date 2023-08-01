@@ -140,7 +140,8 @@ bindsym $MOD+Escape exec swaynag -m "Seleziona un'opzione:" \
   --button-background "#1e1e1e" \
   --text "#FFFFFF" \
   --button-text "#FFFFFF" \
-  --border-bottom "000000"
+  --border-bottom "000000" \
+  --font "Hack Regular 10"
 
    
 # Lock
