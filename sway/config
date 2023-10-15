@@ -13,6 +13,7 @@ bar {
         background #000000
         inactive_workspace #000000 #000000 #ffffff
 		focused_workspace #000000 #000000 #8ab4f8
+        active_workspace #000000 #000000 #8ab4f8
     }
 }
 
@@ -29,6 +30,7 @@ client.unfocused #808080 #808080 #808080 #808080
 # GTK Themes
 exec_always {
     gsettings set org.gnome.desktop.interface gtk-theme 'Materia-dark-compact'
+    gsettings set org.gnome.desktop.interface color-scheme prefer-dark
     gsettings set org.gnome.desktop.interface icon-theme 'Obsidian-Aqua'
     gsettings set org.gnome.desktop.interface cursor-theme 'Adwaita'
     gsettings set org.gnome.desktop.interface font-name 'Hack Regular 10'
@@ -78,6 +80,11 @@ input "type:pointer" {
 input type:keyboard {
 	xkb_layout "it"
 }
+input 12815:20480:Evision_RGB_Keyboard {
+    xkb_layout "us"
+    xkb_variant "intl"
+}
+
 
 # Touchpad
 input "type:touchpad" {
