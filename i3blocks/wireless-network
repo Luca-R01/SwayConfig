@@ -1,0 +1,28 @@
+#!/bin/bash
+
+# Ottieni l'indirizzo IP dell'interfaccia
+INTERFACE="wlan0"
+IPV4=$(ip addr show $INTERFACE | grep "inet " | awk '{print $2}' | cut -f1 -d/)
+IPV6=$(ip addr show $INTERFACE | grep "inet6 " | awk '{print $2}' | cut -f1 -d/ | grep "fe80::")
+SSID=$(iw $INTERFACE info | grep "ssid" | sed 's/^[[:space:]]*ssid //')
+
+if [[ -z $IPV4 ]] ; then
+    COLOR="#FF0000"
+    OUTPUT=""
+else
+    COLOR="#4AF626"
+    OUTPUT=" $SSID"
+fi
+
+# Stampa l'OUTPUT
+echo $OUTPUT && echo "" && echo "$COLOR"
+
+# Mouse click event
+case $BLOCK_BUTTON in
+	3)
+		PUBLIC_IP=$(curl -s ipinfo.io/ip)
+		notify-send "IP pubblico:  $PUBLIC_IP
+IPv4 locale:  $IPV4
+IPv6 locale:  $IPV6" 
+	;;
+esac

@@ -41,7 +41,16 @@ interval=5
 full_text=][
 color=#666666
 
-[network]
+[vpn-network]
+interval=5
+
+[wwan-network]
+interval=5 
+
+[wireless-network]
+interval=5 
+
+[wired-network]
 interval=5 
 
 [separator]
