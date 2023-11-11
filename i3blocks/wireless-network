@@ -21,8 +21,9 @@ echo $OUTPUT && echo "" && echo "$COLOR"
 case $BLOCK_BUTTON in
 	3)
 		PUBLIC_IP=$(curl -s ipinfo.io/ip)
-		notify-send "IP pubblico:  $PUBLIC_IP
-IPv4 locale:  $IPV4
-IPv6 locale:  $IPV6" 
+		notify-send "Interfaccia: $INTERFACE
+IP pubblico: $PUBLIC_IP
+IPv4 locale: $IPV4
+IPv6 locale: $IPV6" 
 	;;
 esac
