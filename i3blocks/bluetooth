@@ -5,14 +5,12 @@ devices=$(bluetoothctl info | grep "Device" | awk '{print $2}')
 
 if [ "$status" = "yes" ]; then
 	COLOR="#FFFFFF"
-	STATUS="ON"
 else
     COLOR="#FF0000"
-    STATUS="OFF"
 fi
 
 # Output
-echo " $STATUS" && echo "" && echo "$COLOR"
+echo "" && echo "" && echo "$COLOR"
 
 # Mouse click event
 case $BLOCK_BUTTON in
