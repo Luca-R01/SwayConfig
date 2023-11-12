@@ -20,8 +20,8 @@ bar {
 # Borders
 default_border pixel 5
 default_floating_border pixel 5
-hide_edge_borders none
-smart_borders off
+for_window [app_id=".*"] border pixel 5 
+
 gaps inner 7
 client.focused #8ab4f8 #8ab4f8 #8ab4f8 #8ab4f8
 client.focused_inactive #808080 #808080 #808080 #808080
@@ -67,6 +67,25 @@ output * bg wallpaper.jpg fill
 
 # Auto start night light
 exec 'systemctl --user start gammastep'
+
+output "LG Display 0x045E Unknown" {
+    mode  1366x768@60.000Hz
+    pos 1721 393
+    transform normal
+    scale 1.0
+    scale_filter nearest
+    adaptive_sync off
+    dpms on
+}
+output "SKYDATA S.P.A. TV Monitor Unknown" {
+    mode  1920x1080@60.000Hz
+    pos 350 390
+    transform normal
+    scale 1.399999976158142
+    scale_filter smart
+    adaptive_sync off
+    dpms on
+}
 
 ### Input configuration-------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -219,9 +238,6 @@ bindsym $MOD+Shift+0 move container to workspace number 10
 
 # Mako for notification
 exec 'systemctl --user start mako'
-
-# Clipboard manager
-#exec copyq
 
 # PolKit
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
