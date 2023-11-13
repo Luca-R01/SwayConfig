@@ -15,6 +15,7 @@ bar {
 		focused_workspace #000000 #000000 #8ab4f8
         active_workspace #000000 #000000 #8ab4f8
     }
+    tray_output none
 }
 
 # Borders
@@ -145,7 +146,7 @@ bindsym XF86Search exec $MENU
 bindsym XF86Explorer exec $FILEMANAGER
 bindsym XF86Tools exec 'xed $HOME/.config/sway/config'
 bindsym XF86LaunchA exec $DMENU
-bindsym XF86Display exec wdisplays
+bindsym XF86Display exec nwg-displays
 
 # Start a terminal
 bindsym $MOD+Return exec $TERM
@@ -158,9 +159,9 @@ bindsym $MOD+Escape exec swaynag -m "Seleziona un'opzione:" \
   -b " Logout" "swaymsg exit" \
   -b " Spegni" "systemctl poweroff" \
   -b " Riavvia" "systemctl reboot" \
-  -b " Sospendi" "systemctl suspend" \
-  -b " Blocca" "$LOCK" \
-  -b " Ricarica Sway" "swaymsg reload" \
+  -b " Sospendi" "pkill swaynag && systemctl suspend" \
+  -b " Blocca" "pkill swaynag && $LOCK" \
+  -b " Ricarica Sway" "pkill swaynag && swaymsg reload" \
   --background "#000000" \
   --border "#1e1e1e" \
   --button-background "#1e1e1e" \
