@@ -53,7 +53,7 @@ exec xdg-mime default nemo.desktop inode/directory application/x-gnome-saved-sea
 # Your preferred application launcher
 set $MENU wofi --show drun -I
 set $DMENU dmenu_run -i -fn "Hack Bold" -nb "#000000" -nf "#ffffff" -sb "#8ab4f8" -sf "#000000"
-set $WMENU dmenu_path | wmenu -f "Hack Bold 10" -N "#000000" -n "#8ab4f8" -s "#000000" -S "#8ab4f8" | xargs swaymsg exec --
+set $WMENU j4-dmenu-desktop --dmenu='wmenu -f "Hack Bold 10" -N "#000000" -n "#8ab4f8" -s "#000000" -S "#8ab4f8"'
 
 # WOB config
 set $WOBSOCK $XDG_RUNTIME_DIR/wob.sock
