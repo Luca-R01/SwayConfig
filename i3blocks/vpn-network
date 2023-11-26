@@ -9,7 +9,7 @@ if [[ -z $IPV4 ]] ; then
     exit 0
 else
     COLOR="#4AF626"
-    OUTPUT=" $IPV4"
+    OUTPUT=""
 fi
 
 # Stampa l'OUTPUT
@@ -18,10 +18,8 @@ echo $OUTPUT && echo "" && echo "$COLOR"
 # Mouse click event
 case $BLOCK_BUTTON in
 	3)
-		PUBLIC_IP=$(curl -s ipinfo.io/ip)
-		notify-send "Interfaccia: $INTERFACE
-IP pubblico: $PUBLIC_IP
-IPv4 locale: $IPV4
-IPv6 locale: $IPV6"
+		notify-send "$INTERFACE:
+$IPV4
+$IPV6"
 	;;
 esac

@@ -14,22 +14,19 @@ echo "" && echo "" && echo "$COLOR"
 
 # Mouse click event
 case $BLOCK_BUTTON in
-    	1)	if [[ $status = "no" ]] ; then
+    	1)	
+    		if [[ $status = "no" ]] ; then
     			bluetoothctl power on >/dev/null 2>&1 && notify-send "Bluetooth attivato"
     		else
     			bluetoothctl power off >/dev/null 2>&1 && notify-send "Bluetooth disattivato"
     		fi	
     	;;
-    	3)	if [[ -z "$devices" ]]; then
-    			notify-send "Nessun dispositivo Bluetooth connesso"
-		else
-    			message="Dispositivi Bluetooth connessi:"
-    			while read -r device; do
-        			name=$(bluetoothctl info "$device" | grep -b "Name" | cut -d ":" -f 3-)
-        			message="$message $name ($device)"
-    			done <<< "$devices"
-    			notify-send "$message"
-		fi
+    	3)	
+    		while read -r device; do
+        		name=$(bluetoothctl info "$device" | grep -b "Name" | cut -d ":" -f 3-)
+        		message="$message $name ($device)"
+    		done <<< "$devices"
+    		notify-send "$message"
     	;;
 esac
 
