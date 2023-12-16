@@ -5,7 +5,7 @@
 # Status Bar:
 bar {
    	position top
-	font pango: Hack Bold 10
+	font pango: SpaceMono Nerd Font Propo Bold 10.2
 	icon_theme Obsidian-Aqua
 	status_command i3blocks
    	colors {
@@ -34,7 +34,7 @@ exec_always {
     gsettings set org.gnome.desktop.interface color-scheme prefer-dark
     gsettings set org.gnome.desktop.interface icon-theme 'Obsidian-Aqua'
     gsettings set org.gnome.desktop.interface cursor-theme 'Adwaita'
-    gsettings set org.gnome.desktop.interface font-name 'Hack Regular 10'
+    gsettings set org.gnome.desktop.interface font-name 'SpaceMono Nerd Font Propo Regular 10'
     gsettings set org.gnome.desktop.wm.preferences button-layout ''
 }
 
