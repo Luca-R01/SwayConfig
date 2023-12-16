@@ -20,7 +20,8 @@ if [[ $BAT_STATUS = Charging ]]; then
 	COLOR="#FFFF00"
 	CHARGE_ICON=" "
 elif [[ $BAT_STATUS = Full ]]; then
-	COLOR="#4AF626"
+	COLOR="#FFFF00"
+	CHARGE_ICON=" "
 elif [[ $BAT_PERC -le 30 ]]; then
 	COLOR="#FF0000"
 fi

@@ -44,9 +44,6 @@ color=#666666
 [vpn-network]
 interval=5 
 
-[wwan-network]
-interval=5 
-
 [wireless-network]
 interval=5 
 
@@ -56,15 +53,6 @@ interval=5
 [separator]
 full_text=][
 color=#666666
-
-[disk]
-interval=5
-
-[ram]
-interval=5
-
-[cpu]
-interval=5
 
 [cputemp]
 interval=5

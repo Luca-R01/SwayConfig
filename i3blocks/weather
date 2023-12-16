@@ -1,0 +1,6 @@
+#!/bin/bash
+
+# Utilizza wttr.in con le coordinate per ottenere il tempo e la temperatura
+weather_info=$(curl "wttr.in/lavello?format=1")
+
+echo "$weather_info"

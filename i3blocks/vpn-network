@@ -9,7 +9,7 @@ if [[ -z $IPV4 ]] ; then
     exit 0
 else
     COLOR="#4AF626"
-    OUTPUT=""
+    OUTPUT="󰖂"
 fi
 
 # Stampa l'OUTPUT
