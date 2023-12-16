@@ -6,14 +6,14 @@ AUDIO_MUTE=$(pactl get-sink-mute @DEFAULT_SINK@ | awk '{print $2}')
 
 if [[ $AUDIO_MUTE = yes ]] ; then
 	COLOR="#FF0000"
-	ICON=""
+	ICON="󰸈"
 else
 	COLOR="#FFFFFF"
 	if [[ $AUDIO_PERC -gt 100 ]]; then
 		COLOR="#ff0000"
 		ICON=""
     	elif [[ $AUDIO_PERC -gt 45 ]]; then
-        	ICON=""
+        	ICON="󰕾"
     	elif [[ $AUDIO_PERC -gt 0 ]]; then
         	ICON=""
     	else
