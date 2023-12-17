@@ -25,7 +25,7 @@ text-wrong-color=FFFFFF
 text-caps-lock-color=FFFFFF
 
 indicator-radius=100
-font=Hack Bold
+font=SpaceMono Nerd Font Propo Bold
 image=$HOME/.config/sway/wallpaper.jpg 
 show-keyboard-layout
 show-failed-attempts

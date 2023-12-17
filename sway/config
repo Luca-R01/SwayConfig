@@ -5,7 +5,7 @@
 # Status Bar:
 bar {
    	position top
-	font pango: SpaceMono Nerd Font Propo Bold 10.2
+	font pango: SpaceMono Nerd Font Propo Bold 10.5
 	icon_theme Obsidian-Aqua
 	status_command i3blocks
    	colors {
