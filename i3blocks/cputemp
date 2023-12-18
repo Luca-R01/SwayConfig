@@ -3,15 +3,13 @@
 TEMP=$(sensors | grep "Package id 0" | awk '{print $4}'| sed 's/^+//' | sed 's/°C//' | sed 's/\.0//')
 COLOR="#FFFFFF"
 
-if [[ $TEMP -gt 80 ]]; then
+if [[ $TEMP -gt 79 ]]; then
 	COLOR="#FF0000"
-	ICON=""
-elif [[ $TEMP -gt 65 ]] ; then
-	ICON=""
-elif [[ $TEMP -gt 50 ]] ; then
-    	ICON=""
+	ICON="󰸁"
+elif [[ $TEMP -gt 69 ]] ; then
+	ICON="󰔏"
 else
-	ICON=""
+    	ICON="󱃃"
 fi
 
 # Output

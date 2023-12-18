@@ -16,31 +16,94 @@ fi
 COLOR="#FFFFFF"
 
 # Controllo dello stato della batteria
-if [[ $BAT_STATUS = Charging ]]; then
-	COLOR="#FFFF00"
-	CHARGE_ICON=" "
-elif [[ $BAT_STATUS = Full ]]; then
-	COLOR="#FFFF00"
-	CHARGE_ICON=" "
-elif [[ $BAT_PERC -le 30 ]]; then
-	COLOR="#FF0000"
-fi
+case $BAT_STATUS in
 
-# Calcolo dell'icona della batteria
-if [[ $BAT_PERC -le 20 ]]; then
-	BAT_ICON=""
-elif [[ $BAT_PERC -le 40 ]]; then
-	BAT_ICON=""
-elif [[ $BAT_PERC -le 60 ]]; then
-	BAT_ICON=""
-elif [[ $BAT_PERC -le 80 ]]; then
-	BAT_ICON=""
-else
-	BAT_ICON=""
-fi
+	"Not charging")
+		if [[ $BAT_PERC -le 10 ]]; then
+            BAT_ICON="󰁺"
+        elif [[ $BAT_PERC -le 20 ]]; then
+            BAT_ICON="󰁻"
+        elif [[ $BAT_PERC -le 30 ]]; then
+            BAT_ICON="󰁼"
+            COLOR="#FF0000"
+        elif [[ $BAT_PERC -le 40 ]]; then
+            BAT_ICON="󰁽"
+        elif [[ $BAT_PERC -le 50 ]]; then
+            BAT_ICON="󰁾"
+        elif [[ $BAT_PERC -le 60 ]]; then
+            BAT_ICON="󰁿"
+        elif [[ $BAT_PERC -le 70 ]]; then
+            BAT_ICON="󰂀"
+        elif [[ $BAT_PERC -le 80 ]]; then
+            BAT_ICON="󰂁"
+        elif [[ $BAT_PERC -le 90 ]]; then
+            BAT_ICON="󰂂"
+        else
+            BAT_ICON="󰁹"
+        fi
+	;;
+	
+    "Discharging")
+        # Calcolo dell'icona della batteria quando è in scarica
+        if [[ $BAT_PERC -le 10 ]]; then
+            BAT_ICON="󰁺"
+        elif [[ $BAT_PERC -le 20 ]]; then
+            BAT_ICON="󰁻"
+        elif [[ $BAT_PERC -le 30 ]]; then
+            BAT_ICON="󰁼"
+            COLOR="#FF0000"
+        elif [[ $BAT_PERC -le 40 ]]; then
+            BAT_ICON="󰁽"
+        elif [[ $BAT_PERC -le 50 ]]; then
+            BAT_ICON="󰁾"
+        elif [[ $BAT_PERC -le 60 ]]; then
+            BAT_ICON="󰁿"
+        elif [[ $BAT_PERC -le 70 ]]; then
+            BAT_ICON="󰂀"
+        elif [[ $BAT_PERC -le 80 ]]; then
+            BAT_ICON="󰂁"
+        elif [[ $BAT_PERC -le 90 ]]; then
+            BAT_ICON="󰂂"
+        else
+            BAT_ICON="󰁹"
+        fi
+        ;;
+    
+    "Charging")
+        COLOR="#FFFF00"
+        # Calcolo dell'icona della batteria quando è in carica
+        if [[ $BAT_PERC -le 10 ]]; then
+            BAT_ICON="󰢜"
+        elif [[ $BAT_PERC -le 20 ]]; then
+            BAT_ICON="󰂆"
+        elif [[ $BAT_PERC -le 30 ]]; then
+            BAT_ICON="󰂇"
+        elif [[ $BAT_PERC -le 40 ]]; then
+            BAT_ICON="󰂈"
+        elif [[ $BAT_PERC -le 50 ]]; then
+            BAT_ICON="󰢝"
+        elif [[ $BAT_PERC -le 60 ]]; then
+            BAT_ICON="󰂉"
+        elif [[ $BAT_PERC -le 70 ]]; then
+            BAT_ICON="󰢞"
+        elif [[ $BAT_PERC -le 80 ]]; then
+            BAT_ICON="󰂊"
+        elif [[ $BAT_PERC -le 90 ]]; then
+            BAT_ICON="󰂋"
+        else
+            BAT_ICON="󰂅"
+        fi
+        ;;
+    
+    "Full")
+        COLOR="#FFFF00"
+        BAT_ICON="󰂅"
+        ;;
+esac
+
 
 # Output
-echo "$CHARGE_ICON$BAT_ICON $BAT_PERC%" && echo "" && echo "$COLOR"
+echo "$BAT_ICON $BAT_PERC%" && echo "" && echo "$COLOR"
 
 # Mouse click event
 case $BLOCK_BUTTON in

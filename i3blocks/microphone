@@ -3,10 +3,10 @@
 MIC=$(pactl get-source-mute @DEFAULT_SOURCE@ | awk '{print $2}')
 if [[ $MIC = no ]] ; then
         COLOR="#FFFFFF"
-        ICON=""
+        ICON="󰍬"
 else
 	COLOR="#FF0000"
-        ICON=""
+        ICON="󰍭"
 fi
 
 # Output

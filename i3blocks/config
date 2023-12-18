@@ -44,6 +44,9 @@ color=#666666
 [vpn-network]
 interval=5 
 
+[wwan-network]
+interval=5
+
 [wireless-network]
 interval=5 
 
