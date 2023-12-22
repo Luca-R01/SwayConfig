@@ -3,13 +3,15 @@
 TEMP=$(optirun nvidia-smi --query-gpu=temperature.gpu --format=csv,noheader)
 COLOR="#FFFFFF"
 
-if [[ $TEMP -gt 79 ]]; then
+if [[ $TEMP -gt 80 ]]; then
 	COLOR="#FF0000"
-	ICON="󰸁"
-elif [[ $TEMP -gt 69 ]] ; then
-	ICON="󰔏"
+	ICON=""
+elif [[ $TEMP -gt 65 ]] ; then
+	ICON=""
+elif [[ $TEMP -gt 50 ]] ; then
+    	ICON=""
 else
-    	ICON="󱃃"
+	ICON=""
 fi
 
 # Output
