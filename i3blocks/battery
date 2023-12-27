@@ -21,8 +21,10 @@ case $BAT_STATUS in
 	"Not charging")
 		if [[ $BAT_PERC -le 10 ]]; then
             BAT_ICON="󰁺"
+            COLOR="#FF0000"
         elif [[ $BAT_PERC -le 20 ]]; then
             BAT_ICON="󰁻"
+            COLOR="#FF0000"
         elif [[ $BAT_PERC -le 30 ]]; then
             BAT_ICON="󰁼"
             COLOR="#FF0000"
@@ -47,8 +49,10 @@ case $BAT_STATUS in
         # Calcolo dell'icona della batteria quando è in scarica
         if [[ $BAT_PERC -le 10 ]]; then
             BAT_ICON="󰁺"
+            COLOR="#FF0000"
         elif [[ $BAT_PERC -le 20 ]]; then
             BAT_ICON="󰁻"
+            COLOR="#FF0000"
         elif [[ $BAT_PERC -le 30 ]]; then
             BAT_ICON="󰁼"
             COLOR="#FF0000"
