@@ -8,10 +8,10 @@ SSID=$(iw $INTERFACE info | grep "ssid" | sed 's/^[[:space:]]*ssid //')
 
 if [[ -z $IPV4 ]] ; then
     COLOR="#FF0000"
-    OUTPUT="󱚼"
+    OUTPUT="󰖪"
 else
     COLOR="#4AF626"
-    OUTPUT=""
+    OUTPUT="󰖩"
 fi
 
 # Stampa l'OUTPUT
