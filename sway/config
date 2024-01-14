@@ -248,7 +248,7 @@ exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 # KeyRing
 exec eval $(gnome-keyring-daemon --start)
 
-# Batsignal
-exec 'batsignal -f 100 -w 30 -c 15 -d 7 -b'
+# Battery alert
+exec '$HOME/.config/sway/battery-alert'
 
 include /etc/sway/config.d/*

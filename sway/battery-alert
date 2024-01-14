@@ -1,0 +1,20 @@
+#!/bin/bash
+
+BAT="BAT0"
+
+while true; do
+    BAT_PERC=$(cat /sys/class/power_supply/$BAT/capacity)
+    BAT_STATUS=$(cat /sys/class/power_supply/$BAT/status)
+
+    if [ "$BAT_STATUS" == "Charging" ]; then
+        if [ "$BAT_PERC" -eq 100 ]; then
+            notify-send "Batteria Carica" "La batteria è completamente carica."
+        fi
+    elif [ "$BAT_STATUS" == "Discharging" ]; then
+        if [ "$BAT_PERC" -le 20 ]; then
+            notify-send "Batteria Scarica" "La batteria è al di sotto del 20%. Carica il tuo dispositivo."
+        fi
+    fi
+
+    sleep 300  # controlla lo stato ogni 5 minuti
+done
