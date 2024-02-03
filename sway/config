@@ -22,6 +22,7 @@ bar {
 default_border pixel 5
 default_floating_border pixel 5
 for_window [app_id=".*"] border pixel 5 
+for_window [app_id=".*"] floating enable
 
 gaps inner 7
 client.focused #8ab4f8 #8ab4f8 #8ab4f8 #8ab4f8
@@ -114,6 +115,8 @@ input "type:touchpad" {
 
 bindgesture swipe:right workspace prev
 bindgesture swipe:left workspace next
+bindgesture swipe:up move position center, resize set width 100 ppt, resize set height 100 ppt
+bindgesture swipe:down move position center, resize set width 50 ppt, resize set height 50 ppt
 
 ### Idle configuration--------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -189,7 +192,8 @@ bindsym alt+f4 kill
 bindsym $MOD+Shift+q kill	
 
 # Make the current focus fullscreen
-bindsym $MOD+f fullscreen
+bindsym $MOD+Shift+f fullscreen
+bindsym $MOD+f move position center, resize set width 100 ppt, resize set height 100 ppt
 
 # Resize window with mouse    
 floating_modifier $MOD normal
