@@ -4,7 +4,7 @@
 INTERFACE="wlan0"
 IPV4=$(ip addr show $INTERFACE | grep "inet " | awk '{print $2}' | cut -f1 -d/)
 IPV6=$(ip addr show $INTERFACE | grep "inet6 " | awk '{print $2}' | cut -f1 -d/ | grep "fe80::")
-SSID=$(iwconfig $INTERFACE | grep "ESSID" | awk '{sub(/.*:/, "", $4); print $4}' | sed 's/\"//g')
+SSID=$(iwconfig $INTERFACE | grep "ESSID" | awk -F'"' '{print $2}')
 
 if [[ -z $IPV4 ]] ; then
     COLOR="#FF0000"
