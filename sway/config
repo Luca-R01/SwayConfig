@@ -22,7 +22,7 @@ bar {
 default_border pixel 5
 default_floating_border pixel 5
 for_window [app_id=".*"] border pixel 5 
-for_window [app_id=".*"] floating enable
+#for_window [app_id=".*"] floating enable
 
 gaps inner 7
 client.focused #8ab4f8 #8ab4f8 #8ab4f8 #8ab4f8
@@ -89,6 +89,9 @@ output "SKYDATA S.P.A. TV Monitor Unknown" {
     adaptive_sync off
     dpms on
 }
+
+bindswitch lid:on output eDP-1 disable
+bindswitch lid:off output eDP-1 enable
 
 ### Input configuration-------------------------------------------------------------------------------------------------------------------------------------------
 
