@@ -125,8 +125,9 @@ bindgesture swipe:down move position center, resize set width 50 ppt, resize set
 
 exec swayidle -w \
          timeout 300 '$LOCK' \
-         timeout 600 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
-         before-sleep '$LOCK'
+         timeout 600 'swaymsg "output * disable"' resume 'swaymsg "output * enable"' \
+         before-sleep '$LOCK' \
+         after-resume 'swaymsg "output * enable"'
 
 ### Key bindings--------------------------------------------------------------------------------------------------------------------------------------------------
 
