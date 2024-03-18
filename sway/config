@@ -71,21 +71,21 @@ output * bg wallpaper.jpg fill
 # Auto start night light
 exec 'systemctl --user start gammastep'
 
+output "SKYDATA S.P.A. TV Monitor Unknown" {
+    mode --custom 1920x1080@60.00Hz
+    pos 350 390
+    transform normal
+    scale 1.4
+    scale_filter smart
+    adaptive_sync off
+    dpms on
+}
 output "LG Display 0x045E Unknown" {
-    mode  1366x768@60.000Hz
+    mode  1366x768@60.005Hz
     pos 1721 393
     transform normal
     scale 1.0
     scale_filter nearest
-    adaptive_sync off
-    dpms on
-}
-output "SKYDATA S.P.A. TV Monitor Unknown" {
-    mode  1920x1080@60.000Hz
-    pos 350 390
-    transform normal
-    scale 1.399999976158142
-    scale_filter smart
     adaptive_sync off
     dpms on
 }
@@ -125,7 +125,6 @@ bindgesture swipe:down move position center, resize set width 50 ppt, resize set
 
 exec swayidle -w \
          timeout 300 '$LOCK' \
-         timeout 600 'swaymsg "output * disable"' resume 'swaymsg "output * enable"' \
          before-sleep '$LOCK' \
          after-resume 'swaymsg "output * enable"'
 

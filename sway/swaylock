@@ -33,3 +33,5 @@ daemonize
 
 clock
 indicator
+datestr=%a %d %b %Y
+timestr=%H:%M
