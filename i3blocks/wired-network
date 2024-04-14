@@ -2,8 +2,8 @@
 
 # Ottieni l'indirizzo IP dell'interfaccia
 INTERFACE="eth0"
-IPV4=$(ip addr show $INTERFACE | grep "inet " | awk '{print $2}' | cut -f1 -d/)
-IPV6=$(ip addr show $INTERFACE | grep "inet6 " | awk '{print $2}' | cut -f1 -d/ | grep "fe80::")
+IPV4=$(ip addr show $INTERFACE 2>/dev/null | grep "inet " | awk '{print $2}' | cut -f1 -d/)
+IPV6=$(ip addr show $INTERFACE 2>/dev/null | grep "inet6 " | awk '{print $2}' | cut -f1 -d/ | grep "fe80::")
 
 if [[ -z $IPV4 ]] ; then
     COLOR="#FF0000"
