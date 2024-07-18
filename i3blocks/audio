@@ -10,13 +10,13 @@ if [[ $AUDIO_MUTE = yes ]] ; then
 else
 	COLOR="#FFFFFF"
 	if [[ $AUDIO_PERC -gt 100 ]]; then
-		ICON=""
+		ICON="󱄠"
     	elif [[ $AUDIO_PERC -gt 45 ]]; then
         	ICON="󰕾"
     	elif [[ $AUDIO_PERC -gt 0 ]]; then
-        	ICON=""
+        	ICON="󰖀"
     	else
-        	ICON=""
+        	ICON="󰕿"
     	fi
 fi
 
