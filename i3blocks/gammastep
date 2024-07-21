@@ -8,7 +8,7 @@ if [[ ! -z $GAMMASTEP_STATUS ]] ; then
 	COLOR="#FFFFFF"
 	MSG="Gammastep è stato disattivato"
 else
-	ICON="󱩌"
+	ICON="󰹏"
 	COLOR="#FF0000"
 	CMD="start"
 	MSG="Gammastep è stato attivato"
