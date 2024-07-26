@@ -35,3 +35,5 @@ clock
 indicator
 datestr=%a %d %b %Y
 timestr=%H:%M
+#screenshots
+effect-blur=7x5
