@@ -1,0 +1,33 @@
+#!/bin/bash
+
+# GET BRIGHTNESS
+BRIGHTNESS=$(brightnessctl -m | awk -F, '{print $4}' | tr -d '%')
+
+# CHECK
+if [ "$BRIGHTNESS" -lt 5 ]; then
+    brightnessctl set 5% > /dev/null
+    BRIGHTNESS=5
+fi
+
+# ICONS
+if [ "$BRIGHTNESS" -ge 67 ]; then
+    ICON="󰃠"  # Alta luminosità
+elif [ "$BRIGHTNESS" -ge 34 ]; then
+    ICON="󰃟"  # Media luminosità
+else
+    ICON="󰃞"  # Bassa luminosità
+fi
+
+# OUTPUT
+echo "$ICON $BRIGHTNESS%"
+
+# Mouse click event
+case $BLOCK_BUTTON in
+    1) 
+        brightnessctl set +5% > /dev/null && pkill -RTMIN+2 i3blocks
+        ;;
+    3) 
+        brightnessctl set 5%- > /dev/null && pkill -RTMIN+2 i3blocks
+        ;;
+esac
+

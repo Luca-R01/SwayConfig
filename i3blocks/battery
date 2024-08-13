@@ -8,110 +8,59 @@ PROFILE=$(powerprofilesctl get)
 
 # Controllo se la batteria è presente
 if [[ -z "$BAT_PERC" ]]; then
-	echo ""
-	exit 0
+    echo ""
+    exit 0
 fi
 
-# Impostazioni predefinite
-COLOR="#FFFFFF"
+# Funzione per ottenere l'icona della batteria e il colore
+get_battery_icon_and_color() {
+    local perc=$1
+    local status=$2
 
-# Controllo dello stato della batteria
-case $BAT_STATUS in
-
-	"Not charging")
-		if [[ $BAT_PERC -le 10 ]]; then
-            BAT_ICON="󰁺"
-            COLOR="#FF0000"
-        elif [[ $BAT_PERC -le 20 ]]; then
-            BAT_ICON="󰁻"
-            COLOR="#FF0000"
-        elif [[ $BAT_PERC -le 30 ]]; then
-            BAT_ICON="󰁼"
-            COLOR="#FF0000"
-        elif [[ $BAT_PERC -le 40 ]]; then
-            BAT_ICON="󰁽"
-        elif [[ $BAT_PERC -le 50 ]]; then
-            BAT_ICON="󰁾"
-        elif [[ $BAT_PERC -le 60 ]]; then
-            BAT_ICON="󰁿"
-        elif [[ $BAT_PERC -le 70 ]]; then
-            BAT_ICON="󰂀"
-        elif [[ $BAT_PERC -le 80 ]]; then
-            BAT_ICON="󰂁"
-        elif [[ $BAT_PERC -le 90 ]]; then
-            BAT_ICON="󰂂"
-        else
-            BAT_ICON="󰁹"
-        fi
-	;;
-	
-    "Discharging")
-        # Calcolo dell'icona della batteria quando è in scarica
-        if [[ $BAT_PERC -le 10 ]]; then
-            BAT_ICON="󰁺"
-            COLOR="#FF0000"
-        elif [[ $BAT_PERC -le 20 ]]; then
-            BAT_ICON="󰁻"
-            COLOR="#FF0000"
-        elif [[ $BAT_PERC -le 30 ]]; then
-            BAT_ICON="󰁼"
-            COLOR="#FF0000"
-        elif [[ $BAT_PERC -le 40 ]]; then
-            BAT_ICON="󰁽"
-        elif [[ $BAT_PERC -le 50 ]]; then
-            BAT_ICON="󰁾"
-        elif [[ $BAT_PERC -le 60 ]]; then
-            BAT_ICON="󰁿"
-        elif [[ $BAT_PERC -le 70 ]]; then
-            BAT_ICON="󰂀"
-        elif [[ $BAT_PERC -le 80 ]]; then
-            BAT_ICON="󰂁"
-        elif [[ $BAT_PERC -le 90 ]]; then
-            BAT_ICON="󰂂"
-        else
-            BAT_ICON="󰁹"
-        fi
-        ;;
-    
-    "Charging")
+    if [[ $status == "Full" ]]; then
+        echo "󰂅 #FFFF00"
+    elif [[ $status == "Charging" ]]; then
         COLOR="#FFFF00"
-        # Calcolo dell'icona della batteria quando è in carica
-        if [[ $BAT_PERC -le 10 ]]; then
-            BAT_ICON="󰢜"
-        elif [[ $BAT_PERC -le 20 ]]; then
-            BAT_ICON="󰂆"
-        elif [[ $BAT_PERC -le 30 ]]; then
-            BAT_ICON="󰂇"
-        elif [[ $BAT_PERC -le 40 ]]; then
-            BAT_ICON="󰂈"
-        elif [[ $BAT_PERC -le 50 ]]; then
-            BAT_ICON="󰢝"
-        elif [[ $BAT_PERC -le 60 ]]; then
-            BAT_ICON="󰂉"
-        elif [[ $BAT_PERC -le 70 ]]; then
-            BAT_ICON="󰢞"
-        elif [[ $BAT_PERC -le 80 ]]; then
-            BAT_ICON="󰂊"
-        elif [[ $BAT_PERC -le 90 ]]; then
-            BAT_ICON="󰂋"
-        else
-            BAT_ICON="󰂅"
-        fi
-        ;;
-    
-    "Full")
-        COLOR="#FFFF00"
-        BAT_ICON="󰂅"
-        ;;
-esac
+        case $perc in
+            [0-9]|10)    echo "󰢜 #FFFF00";;
+            1[1-9]|20)  echo "󰂆 #FFFF00";;
+            2[1-9]|30)  echo "󰂇 #FFFF00";;
+            3[1-9]|40)  echo "󰂈 #FFFF00";;
+            4[1-9]|50)  echo "󰢝 #FFFF00";;
+            5[1-9]|60)  echo "󰂉 #FFFF00";;
+            6[1-9]|70)  echo "󰢞 #FFFF00";;
+            7[1-9]|80)  echo "󰂊 #FFFF00";;
+            8[1-9]|90)  echo "󰂋 #FFFF00";;
+            *)          echo "󰂅 #FFFF00";;
+        esac
+    else
+        case $perc in
+            [0-9]|10)    echo "󰁺 #FF0000";;
+            1[1-9]|20)  echo "󰁻 #FF0000";;
+            2[1-9]|30)  echo "󰁼 #FF0000";;
+            3[1-9]|40)  echo "󰁽";;
+            4[1-9]|50)  echo "󰁾";;
+            5[1-9]|60)  echo "󰁿";;
+            6[1-9]|70)  echo "󰂀";;
+            7[1-9]|80)  echo "󰂁";;
+            8[1-9]|90)  echo "󰂂";;
+            *)          echo "󰁹";;
+        esac
+    fi
+}
 
+# Determinare l'icona e il colore della batteria
+ICON_AND_COLOR=$(get_battery_icon_and_color "$BAT_PERC" "$BAT_STATUS")
+BAT_ICON=$(echo $ICON_AND_COLOR | cut -d' ' -f1)
+COLOR=$(echo $ICON_AND_COLOR | cut -d' ' -f2)
 
 # Output
 echo "$BAT_ICON $BAT_PERC%" && echo "" && echo "$COLOR"
 
 # Mouse click event
 case $BLOCK_BUTTON in
-	3)
-		notify-send "$BAT:" "$BAT_PERC%, $BAT_STATUS \nProfilo: $PROFILE"
-	;;
+    3)
+        notify-send "$BAT:" "$BAT_PERC%, $BAT_STATUS \nProfilo: $PROFILE"
+    ;;
 esac
+

@@ -18,6 +18,10 @@ color=#666666
 [gammastep]
 interval=5
 
+[brightness]
+interval=5
+signal=2
+
 [separator]
 full_text=][
 color=#666666
@@ -28,7 +32,7 @@ signal=12
 
 [audio]
 interval=1
-signal=11
+signal=1
 
 [separator]
 full_text=][
