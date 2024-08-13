@@ -14,3 +14,7 @@ QT_STYLE_OVERRIDE=kvantum
 _JAVA_AWT_WM_NONREPARENTING=1
 SDL_VIDEODRIVER=wayland
 CLUTTER_BACKEND=wayland
+
+#XDG
+XDG_CONFIG_DIRS=/etc/xdg
+XDG_DATA_DIRS=/usr/local/share:/usr/share
