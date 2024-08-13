@@ -24,10 +24,10 @@ echo "$ICON $BRIGHTNESS%"
 # Mouse click event
 case $BLOCK_BUTTON in
     1) 
-        brightnessctl set +5% > /dev/null && pkill -RTMIN+2 i3blocks
+        brightnessctl set +5% > /dev/null && pkill -RTMIN+3 i3blocks
         ;;
     3) 
-        brightnessctl set 5%- > /dev/null && pkill -RTMIN+2 i3blocks
+        brightnessctl set 5%- > /dev/null && pkill -RTMIN+3 i3blocks
         ;;
 esac
 

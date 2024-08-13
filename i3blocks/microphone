@@ -14,6 +14,6 @@ echo "$ICON" && echo "" && echo "$COLOR"
 
 # Mouse click event
 case $BLOCK_BUTTON in
-    1) pactl set-source-mute @DEFAULT_SOURCE@ toggle && pkill -RTMIN+12 i3blocks;;
+    1) pactl set-source-mute @DEFAULT_SOURCE@ toggle && pkill -RTMIN+2 i3blocks;;
 esac
 

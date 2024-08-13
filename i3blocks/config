@@ -20,7 +20,7 @@ interval=5
 
 [brightness]
 interval=5
-signal=2
+signal=3
 
 [separator]
 full_text=][
@@ -28,7 +28,7 @@ color=#666666
 
 [microphone]
 interval=1
-signal=12
+signal=2
 
 [audio]
 interval=1
