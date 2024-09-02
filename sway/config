@@ -1,34 +1,39 @@
-# Sway configuration file
+###################################################################################################
+#                                 SWAY CONFIGURATION FILE                                         #
+###################################################################################################
 
-### Apparance-----------------------------------------------------------------------------------------------------------------------------------------------------
+# (START OF CONFIGURATION FILE)
 
-# Status Bar:
+###################################################################################################
+#                                     APPEARANCE                                                  #
+###################################################################################################
+
+# STATUS BAR:
 bar {
-   	position top
-	font pango: SpaceMono Nerd Font Propo Bold 10
-	icon_theme Obsidian-Aqua
-	status_command i3blocks
-   	colors {
+    position top
+    font pango: SpaceMono Nerd Font Propo Bold 10
+    icon_theme Obsidian-Aqua
+    status_command i3blocks
+    colors {
         statusline #ffffff
         background #000000
         inactive_workspace #000000 #000000 #ffffff
-		focused_workspace #000000 #000000 #8ab4f8
+        focused_workspace #000000 #000000 #8ab4f8
         active_workspace #000000 #000000 #8ab4f8
     }
     tray_output none
 }
 
-# Borders
+# BORDERS
 default_border pixel 5
 default_floating_border pixel 5
 for_window [app_id=".*"] border pixel 5 
-
 gaps inner 7
 client.focused #8ab4f8 #8ab4f8 #8ab4f8 #8ab4f8
 client.focused_inactive #808080 #808080 #808080 #808080
 client.unfocused #808080 #808080 #808080 #808080
 
-# GTK Themes
+# GTK THEMES
 exec_always {
     gsettings set org.gnome.desktop.interface gtk-theme 'Materia-dark-compact'
     gsettings set org.gnome.desktop.interface color-scheme prefer-dark
@@ -38,37 +43,43 @@ exec_always {
     gsettings set org.gnome.desktop.wm.preferences button-layout ''
 }
 
-### Variables------------------------------------------------------------------------------------------------------------------------------------------------------
+###################################################################################################
+#                                      VARIABLES                                                  #
+###################################################################################################
 
-# Logo key. Use Mod1 for Alt.
+exec_always {
+    dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
+    systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
+}
+
+# LOGO KEY. USE MOD1 FOR ALT.
 set $MOD Mod4
 
-# Your preferred terminal emulator
+# YOUR PREFERRED TERMINAL EMULATOR
 set $TERM gnome-terminal
 
-# Your preferred File Manager
+# YOUR PREFERRED FILE MANAGER
 set $FILEMANAGER nemo
 exec xdg-mime default nemo.desktop inode/directory application/x-gnome-saved-search
 
-# Your preferred application launcher
+# YOUR PREFERRED APPLICATION LAUNCHER
 set $MENU wofi --show drun -I
 set $DMENU dmenu_run -i -fn "SpaceMono Nerd Font Propo Bold 10" -nb "#000000" -nf "#ffffff" -sb "#8ab4f8" -sf "#000000"
 set $WMENU j4-dmenu-desktop --dmenu='wmenu -f "SpaceMono Nerd Font Propo Bold 10" -N "#000000" -n "#8ab4f8" -s "#000000" -S "#8ab4f8"'
 
-# WOB config
+# WOB CONFIG
 set $WOBSOCK $XDG_RUNTIME_DIR/wob.sock
 exec rm -f $WOBSOCK && mkfifo $WOBSOCK && tail -f $WOBSOCK | wob
 
-# LockScreen
+# LOCKSCREEN
 set $LOCK swaylock -C $HOME/.config/sway/swaylock
 
-### Output configuration------------------------------------------------------------------------------------------------------------------------------------------
+###################################################################################################
+#                                 OUTPUT CONFIGURATION                                            #
+###################################################################################################
 
-# Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
+# DEFAULT WALLPAPER (MORE RESOLUTIONS ARE AVAILABLE IN /USR/SHARE/BACKGROUNDS/SWAY/)
 output * bg wallpaper.jpg fill
-
-# Auto start night light
-exec 'systemctl --user start gammastep'
 
 output "SKYDATA S.P.A. TV Monitor Unknown" {
     mode --custom 1920x1080@60.00Hz
@@ -92,27 +103,28 @@ output "LG Display 0x045E Unknown" {
 bindswitch lid:on output eDP-1 disable
 bindswitch lid:off output eDP-1 enable
 
-### Input configuration-------------------------------------------------------------------------------------------------------------------------------------------
+###################################################################################################
+#                                   INPUT CONFIGURATION                                           #
+###################################################################################################
 
-# Trackpoint
+# TRACKPOINT
 input "type:pointer" {
-	accel_profile flat
-	pointer_accel 0.5
+    accel_profile flat
+    pointer_accel 0.5
 }
 
-# Keyboard layout
+# KEYBOARD LAYOUT
 input type:keyboard {
-	xkb_layout "it"
+    xkb_layout "it"
 }
 input 12815:20480:Evision_RGB_Keyboard {
     xkb_layout "us"
     xkb_variant "intl"
 }
 
-
-# Touchpad
+# TOUCHPAD
 input "type:touchpad" {
-	natural_scroll enabled
+    natural_scroll enabled
 }
 
 bindgesture swipe:right workspace prev
@@ -120,7 +132,9 @@ bindgesture swipe:left workspace next
 bindgesture swipe:up move position center, resize set width 100 ppt, resize set height 100 ppt
 bindgesture swipe:down move position center, resize set width 50 ppt, resize set height 50 ppt
 
-### Idle configuration--------------------------------------------------------------------------------------------------------------------------------------------
+###################################################################################################
+#                                    IDLE CONFIGURATION                                           #
+###################################################################################################
 
 exec swayidle -w \
          timeout 300 '$LOCK' \
@@ -129,41 +143,41 @@ exec swayidle -w \
          before-sleep '$LOCK' \
          after-resume 'swaymsg "output * enable"'
 
-### Key bindings--------------------------------------------------------------------------------------------------------------------------------------------------
+###################################################################################################
+#                                   KEY BINDINGS                                                  #
+###################################################################################################
 
-## FN Keybinds
-
-# Volume
+# VOLUME
 bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5% && pactl get-sink-volume @DEFAULT_SINK@ | head -n 1| awk '{print substr($5, 1, length($5)-1)}' > $WOBSOCK && pkill -RTMIN+1 i3blocks
 bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5% && pactl get-sink-volume @DEFAULT_SINK@ | head -n 1 | awk '{print substr($5, 1, length($5)-1)}' > $WOBSOCK && pkill -RTMIN+1 i3blocks
 bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle && pkill -RTMIN+1 i3blocks
 
-# Microphone
+# MICROPHONE
 bindsym XF86AudioMicMute exec pactl set-source-mute @DEFAULT_SOURCE@ toggle && pkill -RTMIN+2 i3blocks
 
-# Brightness
+# BRIGHTNESS
 bindsym XF86MonBrightnessDown exec brightnessctl set 5%- | sed -En 's/.*\(([0-9]+)%\).*/\1/p' > $WOBSOCK && pkill -RTMIN+3 i3blocks
 bindsym XF86MonBrightnessUp exec brightnessctl set +5% | sed -En 's/.*\(([0-9]+)%\).*/\1/p' > $WOBSOCK && pkill -RTMIN+3 i3blocks
 
-# Music
+# MUSIC
 bindsym XF86AudioPlay exec playerctl play-pause
 bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
 
-# Extra
+# EXTRA
 bindsym XF86Search exec $MENU
 bindsym XF86Explorer exec $FILEMANAGER
 bindsym XF86Tools exec 'xed $HOME/.config/sway/config'
 bindsym XF86LaunchA exec $WMENU
 bindsym XF86Display exec nwg-displays
 
-# Start a terminal
+# START A TERMINAL
 bindsym $MOD+Return exec $TERM
 
-# Start your launcher
+# START YOUR LAUNCHER
 bindsym $MOD+d exec $MENU
     
-# Logout menu
+# LOGOUT MENU
 bindsym $MOD+Escape exec swaynag -m "Seleziona un'opzione:" \
   -b "󰿅 Logout" "swaymsg exit" \
   -b " Spegni" "systemctl poweroff" \
@@ -179,61 +193,64 @@ bindsym $MOD+Escape exec swaynag -m "Seleziona un'opzione:" \
   --border-bottom "000000" \
   --font "SpaceMono Nerd Font Propo Bold 10"
 
-   
-# Lock
+# LOCK
 bindsym $MOD+l exec $LOCK 
-    
-# Screenshot
+
+# SCREENSHOT
 bindsym Print exec grim && notify-send "Screenshot salvato"
 
-# Reload the configuration file
+# RELOAD THE CONFIGURATION FILE
 bindsym $MOD+Shift+c reload
 
-### WINDOW KEYBINDS
+###################################################################################################
+#                                     WINDOWS                                                     #
+###################################################################################################
 
-# Kill focused window
+# KILL FOCUSED WINDOW
 bindsym alt+f4 kill
-bindsym $MOD+Shift+q kill	
+bindsym $MOD+Shift+q kill    
 
-# Make the current focus fullscreen
+# MAKE THE CURRENT FOCUS FULLSCREEN
 bindsym $MOD+f fullscreen
 bindsym $MOD+Shift+f move position center, resize set width 100 ppt, resize set height 100 ppt
 bindsym $MOD+Shift+s move position center, resize set width 50 ppt, resize set height 50 ppt
 
-# Resize window with mouse    
+# RESIZE WINDOW WITH MOUSE    
 floating_modifier $MOD normal
 
-# Moving around:
+# MOVING AROUND:
 bindsym $MOD+Left focus left
 bindsym $MOD+Down focus down
 bindsym $MOD+Up focus up
 bindsym $MOD+Right focus right
 
-# Move the focused window with the same, but add Shift
+# MOVE THE FOCUSED WINDOW WITH THE SAME, BUT ADD SHIFT
 bindsym $MOD+Shift+Left move left
 bindsym $MOD+Shift+Down move down
 bindsym $MOD+Shift+Up move up
 bindsym $MOD+Shift+Right move right
 
-# Toggle the current focus between tiling and floating mode
+# TOGGLE THE CURRENT FOCUS BETWEEN TILING AND FLOATING MODE
 bindsym $MOD+Shift+space floating toggle
 
 mode "resize" {
-    # Ditto, with arrow keys
+    # DITTO, WITH ARROW KEYS
     bindsym Left resize shrink width 10px
     bindsym Down resize grow height 10px
     bindsym Up resize shrink height 10px
     bindsym Right resize grow width 10px
 
-    # Return to default mode
+    # RETURN TO DEFAULT MODE
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
 bindsym $MOD+r mode "resize"
 
-### Workspaces----------------------------------------------------------------------------------------------------------------------------------------------------
+###################################################################################################
+#                                     WORKSPACES                                                  #
+###################################################################################################
 
-# Switch to workspace
+# SWITCH TO WORKSPACE
 bindsym $MOD+1 workspace number 1
 bindsym $MOD+2 workspace number 2
 bindsym $MOD+3 workspace number 3
@@ -245,7 +262,7 @@ bindsym $MOD+8 workspace number 8
 bindsym $MOD+9 workspace number 9
 bindsym $MOD+0 workspace number 10
 
-# Move focused container to workspace
+# MOVE FOCUSED CONTAINER TO WORKSPACE
 bindsym $MOD+Shift+1 move container to workspace number 1
 bindsym $MOD+Shift+2 move container to workspace number 2
 bindsym $MOD+Shift+3 move container to workspace number 3
@@ -256,21 +273,31 @@ bindsym $MOD+Shift+7 move container to workspace number 7
 bindsym $MOD+Shift+8 move container to workspace number 8
 bindsym $MOD+Shift+9 move container to workspace number 9
 bindsym $MOD+Shift+0 move container to workspace number 10
-# Note: workspaces can have any name you want, not just numbers.
-# We just use 1-10 as the default.
+# NOTE: WORKSPACES CAN HAVE ANY NAME YOU WANT, NOT JUST NUMBERS.
+# WE JUST USE 1-10 AS THE DEFAULT.
 
-### Startup Application--------------------------------------------------------------------------------------------------------------------------------------------
+###################################################################################################
+#                                  STARTUP APPLICATIONS                                           #
+###################################################################################################
 
-# Mako for notification
+# MAKO FOR NOTIFICATION
 exec 'systemctl --user start mako'
 
-# PolKit
-exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+# POLKIT
+exec '--no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1'
 
-# KeyRing
-exec eval $(gnome-keyring-daemon --start)
+# KEYRING
+exec 'eval $(gnome-keyring-daemon --start)'
 
-# Battery alert
+# BATTERY ALERT
 exec '$HOME/.config/sway/battery-alert'
 
+# AUTO START NIGHT LIGHT
+exec 'systemctl --user start gammastep'
+
+###################################################################################################
+#                                    INCLUDE                                                      #
+###################################################################################################
+
 include /etc/sway/config.d/*
+
