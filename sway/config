@@ -28,6 +28,7 @@ bar {
 default_border pixel 5
 default_floating_border pixel 5
 for_window [app_id=".*"] border pixel 5 
+for_window [app_id="flameshot"] floating enable, fullscreen disable, move absolute position 0 0, border pixel 0
 gaps inner 7
 client.focused #8ab4f8 #8ab4f8 #8ab4f8 #8ab4f8
 client.focused_inactive #808080 #808080 #808080 #808080
@@ -48,8 +49,9 @@ exec_always {
 ###################################################################################################
 
 exec_always {
-    dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
-    systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
+    xrandr --output XWAYLAND0 --primary
+    systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK
+    dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
 }
 
 # LOGO KEY. USE MOD1 FOR ALT.
@@ -284,7 +286,7 @@ bindsym $MOD+Shift+0 move container to workspace number 10
 exec 'systemctl --user start mako'
 
 # POLKIT
-exec '--no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1'
+exec --no-startup-id '/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1'
 
 # KEYRING
 exec 'eval $(gnome-keyring-daemon --start)'
