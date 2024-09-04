@@ -1,11 +1,11 @@
 #!/bin/bash
 
-status=$(bluetoothctl show | grep "Powered:" | awk '{print $2}')
-devices=$(bluetoothctl info | grep "Device" | awk '{print $2}')
+STATUS=$(bluetoothctl show | grep "Powered:" | awk '{print $2}')
+DEVICES=$(bluetoothctl info | grep "Device" | awk '{print $2}')
 
-if [ "$status" = "yes" ]; then
-	COLOR="#FFFFFF"
-	ICON="󰂯"
+if [ "$STATUS" = "yes" ]; then
+    COLOR="#FFFFFF"
+    ICON="󰂯"
 else
     COLOR="#FF0000"
     ICON="󰂲"
@@ -16,19 +16,22 @@ echo "$ICON" && echo "" && echo "$COLOR"
 
 # Mouse click event
 case $BLOCK_BUTTON in
-    	1)	
-    		if [[ $status = "no" ]] ; then
-    			bluetoothctl power on >/dev/null 2>&1 && notify-send "Bluetooth attivato"
-    		else
-    			bluetoothctl power off >/dev/null 2>&1 && notify-send "Bluetooth disattivato"
-    		fi	
-    	;;
-    	3)	
-    		while read -r device; do
-        		name=$(bluetoothctl info "$device" | grep -b "Name" | cut -d ":" -f 3-)
-        		message="$message $name ($device)"
-    		done <<< "$devices"
-    		notify-send "$message"
-    	;;
+    1)
+        if [ "$STATUS" = "no" ]; then
+            bluetoothctl power on >/dev/null 2>&1 && notify-send "Bluetooth attivato"
+        else
+            bluetoothctl power off >/dev/null 2>&1 && notify-send "Bluetooth disattivato"
+        fi
+    ;;
+    3)
+        MESSAGE=""
+        while read -r DEVICE; do
+            NAME=$(bluetoothctl info "$DEVICE" | grep "Name" | cut -d ":" -f 2- | xargs)
+            if [ -n "$NAME" ]; then
+                MESSAGE="$MESSAGE$NAME ($DEVICE)\n"
+            fi
+        done <<< "$DEVICES"
+        notify-send "$(echo -e "$MESSAGE" | sed '/^$/d')" # Rimuove linee vuote
+    ;;
 esac
 

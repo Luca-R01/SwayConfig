@@ -4,7 +4,6 @@
 BAT="BAT0"
 BAT_PERC=$(cat /sys/class/power_supply/$BAT/capacity)
 BAT_STATUS=$(cat /sys/class/power_supply/$BAT/status)
-PROFILE=$(powerprofilesctl get)
 
 # Controllo se la batteria è presente
 if [[ -z "$BAT_PERC" ]]; then
@@ -60,7 +59,7 @@ echo "$BAT_ICON $BAT_PERC%" && echo "" && echo "$COLOR"
 # Mouse click event
 case $BLOCK_BUTTON in
     3)
-        notify-send "$BAT:" "$BAT_PERC%, $BAT_STATUS \nProfilo: $PROFILE"
+        notify-send "$BAT:" "$BAT_PERC%, $BAT_STATUS"
     ;;
 esac
 
