@@ -48,12 +48,6 @@ exec_always {
 #                                      VARIABLES                                                  #
 ###################################################################################################
 
-exec_always {
-    xrandr --output XWAYLAND0 --primary
-    systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK
-    dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
-}
-
 # LOGO KEY. USE MOD1 FOR ALT.
 set $MOD Mod4
 
