@@ -292,7 +292,7 @@ exec '$HOME/.config/sway/battery-alert'
 exec 'systemctl --user start gammastep'
 
 # AUTO TILING
-exec_always 'autotiling -w 1 3 5 7 9'
+exec_always 'autotiling'
 
 ###################################################################################################
 #                                    INCLUDE                                                      #
