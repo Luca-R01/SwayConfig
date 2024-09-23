@@ -1,7 +1,6 @@
 #!/bin/bash
 
 STATUS=$(bluetoothctl show | grep "Powered:" | awk '{print $2}')
-DEVICES=$(bluetoothctl info | grep "Device" | awk '{print $2}')
 
 if [ "$STATUS" = "yes" ]; then
     COLOR="#FFFFFF"
@@ -24,14 +23,7 @@ case $BLOCK_BUTTON in
         fi
     ;;
     3)
-        MESSAGE=""
-        while read -r DEVICE; do
-            NAME=$(bluetoothctl info "$DEVICE" | grep "Name" | cut -d ":" -f 2- | xargs)
-            if [ -n "$NAME" ]; then
-                MESSAGE="$MESSAGE$NAME ($DEVICE)\n"
-            fi
-        done <<< "$DEVICES"
-        notify-send "$(echo -e "$MESSAGE" | sed '/^$/d')" # Rimuove linee vuote
+        blueman-manager
     ;;
 esac
 
