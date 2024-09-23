@@ -28,11 +28,15 @@ bar {
 default_border pixel 5
 default_floating_border pixel 5
 for_window [app_id=".*"] border pixel 5 
-for_window [app_id="flameshot"] floating enable, fullscreen disable, move absolute position 0 0, border pixel 0
 gaps inner 7
 client.focused #8ab4f8 #8ab4f8 #8ab4f8 #8ab4f8
 client.focused_inactive #808080 #808080 #808080 #808080
 client.unfocused #808080 #808080 #808080 #808080
+
+# CUSTOM WINDOWS RULES
+for_window [app_id="flameshot"] floating enable, fullscreen disable, move absolute position 0 0, border pixel 0
+for_window [title="nmtui-terminal"] floating enable
+for_window [title="bpytop-terminal"] floating enable
 
 # GTK THEMES
 exec_always {
@@ -299,4 +303,5 @@ exec_always 'autotiling'
 ###################################################################################################
 
 include /etc/sway/config.d/*
+
 
