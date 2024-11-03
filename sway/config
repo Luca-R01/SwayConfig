@@ -65,7 +65,6 @@ exec xdg-mime default nemo.desktop inode/directory application/x-gnome-saved-sea
 # YOUR PREFERRED APPLICATION LAUNCHER
 set $MENU wofi --show drun -I
 set $DMENU dmenu_run -i -fn "SpaceMono Nerd Font Propo Bold 10" -nb "#000000" -nf "#ffffff" -sb "#8ab4f8" -sf "#000000"
-set $WMENU j4-dmenu-desktop --dmenu='wmenu -f "SpaceMono Nerd Font Propo Bold 10" -N "#000000" -n "#8ab4f8" -s "#000000" -S "#8ab4f8"'
 
 # WOB CONFIG
 set $WOBSOCK $XDG_RUNTIME_DIR/wob.sock
@@ -138,8 +137,8 @@ bindgesture swipe:down move position center, resize set width 50 ppt, resize set
 
 exec swayidle -w \
          timeout 300 '$LOCK' \
-         timeout 600 'swaymsg "output * dpms off"' \
-         resume 'swaymsg "output * dpms on"' \
+         timeout 600 'swaymsg "output * disable"' \
+         resume 'swaymsg "output * enable"' \
          before-sleep '$LOCK' \
          after-resume 'swaymsg "output * enable"'
 
@@ -168,7 +167,7 @@ bindsym XF86AudioPrev exec playerctl previous
 bindsym XF86Search exec $MENU
 bindsym XF86Explorer exec $FILEMANAGER
 bindsym XF86Tools exec 'xed $HOME/.config/sway/config'
-bindsym XF86LaunchA exec $WMENU
+bindsym XF86LaunchA exec $MENU
 bindsym XF86Display exec nwg-displays
 
 # START A TERMINAL
@@ -179,12 +178,12 @@ bindsym $MOD+d exec $MENU
     
 # LOGOUT MENU
 bindsym $MOD+Escape exec swaynag -m "Seleziona un'opzione:" \
-  -b "󰿅 Logout" "swaymsg exit" \
-  -b " Spegni" "systemctl poweroff" \
-  -b "󰜉 Riavvia" "systemctl reboot" \
-  -b " Sospendi" "pkill swaynag && systemctl suspend" \
-  -b " Blocca" "pkill swaynag && $LOCK" \
-  -b " Ricarica Sway" "pkill swaynag && swaymsg reload" \
+  -b "$(printf "%-20s" "󰿅 Logout")" "swaymsg exit" \
+  -b "$(printf "%-20s" " Spegni")" "systemctl poweroff" \
+  -b "$(printf "%-20s" "󰜉 Riavvia")" "systemctl reboot" \
+  -b "$(printf "%-20s" " Sospendi")" "pkill swaynag && systemctl suspend" \
+  -b "$(printf "%-20s" " Blocca")" "pkill swaynag && $LOCK" \
+  -b "$(printf "%-20s" " Ricarica Sway")" "pkill swaynag && swaymsg reload" \
   --background "#000000" \
   --border "#1e1e1e" \
   --button-background "#1e1e1e" \
@@ -192,6 +191,7 @@ bindsym $MOD+Escape exec swaynag -m "Seleziona un'opzione:" \
   --button-text "#FFFFFF" \
   --border-bottom "000000" \
   --font "SpaceMono Nerd Font Propo Bold 10"
+
 
 # LOCK
 bindsym $MOD+l exec $LOCK 
