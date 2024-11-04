@@ -15,6 +15,14 @@ command=$HOME/.config/i3blocks/$BLOCK_NAME
 full_text=[
 color=#666666
 
+[pacman-updates]
+interval=1800
+signal=4
+
+[separator]
+full_text=][
+color=#666666
+
 [gammastep]
 interval=5
 

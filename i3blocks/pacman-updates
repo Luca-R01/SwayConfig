@@ -1,0 +1,14 @@
+#!/bin/bash
+
+UPDATES=$(checkupdates | wc -l)
+
+# OUTPUT
+echo "󰚰 $UPDATES"
+
+# Mouse click event
+case $BLOCK_BUTTON in
+    1)
+        # Apri un terminale e aggiorna il sistema
+        gnome-terminal --title="system update-terminal" -- bash -c "sudo pacman -Syu; pkill -RTMIN+4 i3blocks"
+    ;;
+esac
