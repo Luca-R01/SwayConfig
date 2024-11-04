@@ -1,0 +1,32 @@
+@define-color cc-bg rgb(30, 30, 30); /* Colore di sfondo del pannello (opzionale) */
+@define-color noti-bg rgb(30, 30, 30); /* Sfondo delle notifiche (grigio chiaro) */
+@define-color noti-border-color rgb(138, 180, 248); /* Colore del bordo (blu) */
+@define-color text-color rgb(255, 255, 255); /* Colore del testo */
+
+.notification-row .notification-background {
+  border: none; /* Rimuove i bordi */
+  outline: none; /* Rimuove eventuali contorni */
+}
+
+.notification-row .notification {
+    border: 5px solid @noti-border-color; /* Bordo blu di 5px */
+    border-radius: 0; /* Nessuna stondatura */
+}
+
+.notification-row:hover {
+    background: @noti-bg; /* Colore di sfondo al passaggio del mouse */
+    border-radius: 0; /* Nessuna stondatura */
+}
+
+.control-center {
+    margin: 7px;
+    background: @cc-bg; /* Colore di sfondo del pannello (opzionale) */
+    border: 5px solid @noti-border-color; /* Bordo blu di 5px */
+    border-radius: 0; /* Nessuna stondatura */
+    color: @text-color; /* Colore del testo nel pannello */
+}
+
+.control-center .control-center-list {
+    background: transparent; /* Sfondo trasparente per la lista delle notifiche */
+}
+
