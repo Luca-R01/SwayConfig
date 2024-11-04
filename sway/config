@@ -37,15 +37,17 @@ client.unfocused #808080 #808080 #808080 #808080
 for_window [app_id="flameshot"] floating enable, fullscreen disable, move absolute position 0 0, border pixel 0
 for_window [title="nmtui-terminal"] floating enable
 for_window [title="bpytop-terminal"] floating enable
+for_window [title="system update-terminal"] floating enable
 
 # GTK THEMES
 exec_always {
     gsettings set org.gnome.desktop.interface gtk-theme 'Materia-dark-compact'
-    gsettings set org.gnome.desktop.interface color-scheme prefer-dark
+    gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
     gsettings set org.gnome.desktop.interface icon-theme 'Obsidian-Aqua'
     gsettings set org.gnome.desktop.interface cursor-theme 'Adwaita'
     gsettings set org.gnome.desktop.interface font-name 'SpaceMono Nerd Font Propo Regular 10'
     gsettings set org.gnome.desktop.wm.preferences button-layout ''
+    xsettingsd &
 }
 
 ###################################################################################################
@@ -281,7 +283,7 @@ bindsym $MOD+Shift+0 move container to workspace number 10
 ###################################################################################################
 
 # MAKO FOR NOTIFICATION
-exec 'systemctl --user start mako'
+exec 'swaync'
 
 # POLKIT
 exec --no-startup-id '/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1'
