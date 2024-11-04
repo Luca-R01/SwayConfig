@@ -181,11 +181,11 @@ bindsym $MOD+d exec $MENU
 # LOGOUT MENU
 bindsym $MOD+Escape exec swaynag -m "Seleziona un'opzione:" \
   -b "$(printf "%-20s" "󰿅 Logout")" "swaymsg exit" \
-  -b "$(printf "%-20s" " Spegni")" "systemctl poweroff" \
+  -b "$(printf "%-20s" "󰤆 Spegni")" "systemctl poweroff" \
   -b "$(printf "%-20s" "󰜉 Riavvia")" "systemctl reboot" \
-  -b "$(printf "%-20s" " Sospendi")" "pkill swaynag && systemctl suspend" \
-  -b "$(printf "%-20s" " Blocca")" "pkill swaynag && $LOCK" \
-  -b "$(printf "%-20s" " Ricarica Sway")" "pkill swaynag && swaymsg reload" \
+  -b "$(printf "%-20s" "󰤄 Sospendi")" "pkill swaynag && systemctl suspend" \
+  -b "$(printf "%-20s" "󱅞 Blocca")" "pkill swaynag && $LOCK" \
+  -b "$(printf "%-20s" "󰑓 Ricarica Sway")" "pkill swaynag && swaymsg reload" \
   --background "#000000" \
   --border "#1e1e1e" \
   --button-background "#1e1e1e" \
