@@ -19,9 +19,8 @@ get_battery_icon_and_color() {
     if [[ $status == "Full" ]]; then
         echo "󰂅 #FFFF00"
     elif [[ $status == "Charging" ]]; then
-        COLOR="#FFFF00"
         case $perc in
-            [0-9]|10)    echo "󰢜 #FFFF00";;
+            [0-9]|10)   echo "󰢜 #FFFF00";;
             1[1-9]|20)  echo "󰂆 #FFFF00";;
             2[1-9]|30)  echo "󰂇 #FFFF00";;
             3[1-9]|40)  echo "󰂈 #FFFF00";;
@@ -34,24 +33,27 @@ get_battery_icon_and_color() {
         esac
     else
         case $perc in
-            [0-9]|10)    echo "󰁺 #FF0000";;
+            [0-9]|10)   echo "󰁺 #FF0000";;
             1[1-9]|20)  echo "󰁻 #FF0000";;
             2[1-9]|30)  echo "󰁼 #FF0000";;
-            3[1-9]|40)  echo "󰁽";;
-            4[1-9]|50)  echo "󰁾";;
-            5[1-9]|60)  echo "󰁿";;
-            6[1-9]|70)  echo "󰂀";;
-            7[1-9]|80)  echo "󰂁";;
-            8[1-9]|90)  echo "󰂂";;
-            *)          echo "󰁹";;
+            3[1-9]|40)  echo "󰁽 #FFFFFF";;
+            4[1-9]|50)  echo "󰁾 #FFFFFF";;
+            5[1-9]|60)  echo "󰁿 #FFFFFF";;
+            6[1-9]|70)  echo "󰂀 #FFFFFF";;
+            7[1-9]|80)  echo "󰂁 #FFFFFF";;
+            8[1-9]|90)  echo "󰂂 #FFFFFF";;
+            *)          echo "󰁹 #FFFFFF";;
         esac
     fi
 }
 
 # Determinare l'icona e il colore della batteria
 ICON_AND_COLOR=$(get_battery_icon_and_color "$BAT_PERC" "$BAT_STATUS")
-BAT_ICON=$(echo $ICON_AND_COLOR | cut -d' ' -f1)
-COLOR=$(echo $ICON_AND_COLOR | cut -d' ' -f2)
+BAT_ICON=$(echo "$ICON_AND_COLOR" | cut -d' ' -f1)
+COLOR=$(echo "$ICON_AND_COLOR" | cut -d' ' -f2)
+
+# Fallback se icona o colore sono vuoti
+COLOR=${COLOR:-#FFFFFF}
 
 # Output
 echo "$BAT_ICON $BAT_PERC%" && echo "" && echo "$COLOR"
