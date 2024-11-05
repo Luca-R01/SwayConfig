@@ -38,6 +38,7 @@ for_window [app_id="flameshot"] floating enable, fullscreen disable, move absolu
 for_window [title="nmtui-terminal"] floating enable
 for_window [title="bpytop-terminal"] floating enable
 for_window [title="system update-terminal"] floating enable
+for_window [title="Calcolatrice"] floating enable
 
 # GTK THEMES
 exec_always {
