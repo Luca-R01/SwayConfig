@@ -1,23 +1,23 @@
 #!/bin/bash
 
 # Prendo informazioni dell'audio
-AUDIO_PERC=$(pactl get-sink-volume @DEFAULT_SINK@ | head -n 1| awk '{print substr($5, 1, length($5)-1)}')
-AUDIO_MUTE=$(pactl get-sink-mute @DEFAULT_SINK@ | awk '{print $2}')
+AUDIO_PERC=$(wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk '{print int($2 * 100)}')
+AUDIO_MUTE=$(wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk '{print $3}')
 
-if [[ $AUDIO_MUTE = yes ]] ; then
+if [[ $AUDIO_MUTE = "[MUTED]" ]] ; then
 	COLOR="#FF0000"
 	ICON="󰸈"
 else
 	COLOR="#FFFFFF"
 	if [[ $AUDIO_PERC -gt 100 ]]; then
 		ICON="󱄠"
-    	elif [[ $AUDIO_PERC -gt 45 ]]; then
-        	ICON="󰕾"
-    	elif [[ $AUDIO_PERC -gt 0 ]]; then
-        	ICON="󰖀"
-    	else
-        	ICON="󰕿"
-    	fi
+	elif [[ $AUDIO_PERC -gt 45 ]]; then
+		ICON="󰕾"
+	elif [[ $AUDIO_PERC -gt 0 ]]; then
+		ICON="󰖀"
+	else
+		ICON="󰕿"
+	fi
 fi
 
 # Output
@@ -25,9 +25,8 @@ echo "$ICON $AUDIO_PERC%" && echo "" && echo "$COLOR"
 
 # Mouse click event
 case $BLOCK_BUTTON in
-	1) pactl set-sink-volume @DEFAULT_SINK@ +5% && pkill -RTMIN+1 i3blocks ;;
-	2) pactl set-sink-mute @DEFAULT_SINK@ toggle;;
-	3) pactl set-sink-volume @DEFAULT_SINK@ -5% && pkill -RTMIN+1 i3blocks ;;
+	1) wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+ --limit=1.0 && pkill -RTMIN+1 i3blocks ;;
+	2) wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle ;;
+	3) wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%- && pkill -RTMIN+1 i3blocks ;;
 esac
-
 
