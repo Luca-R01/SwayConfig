@@ -34,7 +34,7 @@ client.focused_inactive #808080 #808080 #808080 #808080
 client.unfocused #808080 #808080 #808080 #808080
 
 # CUSTOM WINDOWS RULES
-for_window [app_id="flameshot"] floating enable, fullscreen disable, move absolute position 0 0, border pixel 0
+for_window [app_id="flameshot"] border pixel 0, floating enable, fullscreen enable
 for_window [title="nmtui-terminal"] floating enable
 for_window [title="bpytop-terminal"] floating enable
 for_window [title="system update-terminal"] floating enable
@@ -150,12 +150,12 @@ exec swayidle -w \
 ###################################################################################################
 
 # VOLUME
-bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5% && pactl get-sink-volume @DEFAULT_SINK@ | head -n 1| awk '{print substr($5, 1, length($5)-1)}' > $WOBSOCK && pkill -RTMIN+1 i3blocks
-bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5% && pactl get-sink-volume @DEFAULT_SINK@ | head -n 1 | awk '{print substr($5, 1, length($5)-1)}' > $WOBSOCK && pkill -RTMIN+1 i3blocks
-bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle && pkill -RTMIN+1 i3blocks
+bindsym XF86AudioRaiseVolume exec wpctl set-volume @DEFAULT_SINK@ 5%+ --limit=1.0 && wpctl get-volume @DEFAULT_SINK@ | awk '{print int($2 * 100)}' > $WOBSOCK && pkill -RTMIN+1 i3blocks
+bindsym XF86AudioLowerVolume exec wpctl set-volume @DEFAULT_SINK@ 5%- && wpctl get-volume @DEFAULT_SINK@ | awk '{print int($2 * 100)}' > $WOBSOCK && pkill -RTMIN+1 i3blocks
+bindsym XF86AudioMute exec wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle && pkill -RTMIN+1 i3blocks
 
 # MICROPHONE
-bindsym XF86AudioMicMute exec pactl set-source-mute @DEFAULT_SOURCE@ toggle && pkill -RTMIN+2 i3blocks
+bindsym XF86AudioMicMute exec wpctl set-mute @DEFAULT_SOURCE@ toggle && pkill -RTMIN+2 i3blocks
 
 # BRIGHTNESS
 bindsym XF86MonBrightnessDown exec brightnessctl set 5%- | sed -En 's/.*\(([0-9]+)%\).*/\1/p' > $WOBSOCK && pkill -RTMIN+3 i3blocks
@@ -200,7 +200,7 @@ bindsym $MOD+Escape exec swaynag -m "Seleziona un'opzione:" \
 bindsym $MOD+l exec $LOCK 
 
 # SCREENSHOT
-bindsym Print exec grim && notify-send "Screenshot salvato"
+bindsym Print exec 'XDG_CURRENT_DESKTOP=sway flameshot gui'
 
 # RELOAD THE CONFIGURATION FILE
 bindsym $MOD+Shift+c reload
