@@ -11,7 +11,7 @@
 # STATUS BAR:
 bar {
     position top
-    font pango: SpaceMono Nerd Font Propo Bold 10
+    font pango: JetBrainsMono Nerd Font Propo Bold 10
     icon_theme Obsidian-Aqua
     status_command i3blocks
     colors {
@@ -28,7 +28,7 @@ bar {
 default_border pixel 5
 default_floating_border pixel 5
 for_window [app_id=".*"] border pixel 5 
-gaps inner 7
+gaps inner 10
 client.focused #8ab4f8 #8ab4f8 #8ab4f8 #8ab4f8
 client.focused_inactive #808080 #808080 #808080 #808080
 client.unfocused #808080 #808080 #808080 #808080
@@ -46,7 +46,7 @@ exec_always {
     gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
     gsettings set org.gnome.desktop.interface icon-theme 'Obsidian-Aqua'
     gsettings set org.gnome.desktop.interface cursor-theme 'Adwaita'
-    gsettings set org.gnome.desktop.interface font-name 'SpaceMono Nerd Font Propo Regular 10'
+    gsettings set org.gnome.desktop.interface font-name 'JetBrainsMono Nerd Font Propo Regular 10'
     gsettings set org.gnome.desktop.wm.preferences button-layout ''
     xsettingsd &
 }
@@ -67,7 +67,7 @@ exec xdg-mime default nemo.desktop inode/directory application/x-gnome-saved-sea
 
 # YOUR PREFERRED APPLICATION LAUNCHER
 set $MENU wofi --show drun -I
-set $DMENU dmenu_run -i -fn "SpaceMono Nerd Font Propo Bold 10" -nb "#000000" -nf "#ffffff" -sb "#8ab4f8" -sf "#000000"
+set $DMENU dmenu_run -i -fn "JetBrainsMono Nerd Font Propo Bold 10" -nb "#000000" -nf "#ffffff" -sb "#8ab4f8" -sf "#000000"
 
 # WOB CONFIG
 set $WOBSOCK $XDG_RUNTIME_DIR/wob.sock
@@ -193,7 +193,7 @@ bindsym $MOD+Escape exec swaynag -m "Seleziona un'opzione:" \
   --text "#FFFFFF" \
   --button-text "#FFFFFF" \
   --border-bottom "000000" \
-  --font "SpaceMono Nerd Font Propo Bold 10"
+  --font "JetBrainsMono Nerd Font Propo Bold 10"
 
 
 # LOCK
@@ -282,7 +282,7 @@ bindsym $MOD+Shift+0 move container to workspace number 10
 ###################################################################################################
 
 # MAKO FOR NOTIFICATION
-exec 'swaync'
+exec_always 'swaync'
 
 # POLKIT
 exec --no-startup-id '/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1'
