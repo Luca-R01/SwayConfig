@@ -1,7 +1,7 @@
 background-color=#1e1e1e
 border-color=#8ab4f8
 border-size=5
-font=SpaceMono Nerd Font Propo Regular 10
+font=JetBrainsMono Nerd Font Propo 10
 on-notify=exec mpv /usr/share/sounds/freedesktop/stereo/message.oga
-margin=14,14,14,7
+margin=10
 
