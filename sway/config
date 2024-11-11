@@ -281,8 +281,8 @@ bindsym $MOD+Shift+0 move container to workspace number 10
 #                                  STARTUP APPLICATIONS                                           #
 ###################################################################################################
 
-# SWAYNC FOR NOTIFICATION
-exec_always --no-startup-id 'swaync'
+# MAKO FOR NOTIFICATION
+exec 'systemctl --user start mako'
 
 # POLKIT
 exec_always --no-startup-id '/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1'
