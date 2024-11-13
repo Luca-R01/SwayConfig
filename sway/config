@@ -174,10 +174,10 @@ bindsym XF86LaunchA exec $MENU
 bindsym XF86Display exec nwg-displays
 
 # START A TERMINAL
-bindsym $MOD+Return exec $TERM
+bindsym $MOD+T exec $TERM
 
 # START YOUR LAUNCHER
-bindsym $MOD+d exec $MENU
+bindsym $MOD+return exec $MENU
     
 # LOGOUT MENU
 bindsym $MOD+Escape exec swaynag -m "Seleziona un'opzione:" \
