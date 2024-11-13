@@ -41,7 +41,7 @@ for_window [title="system update-terminal"] floating enable
 for_window [title="Calcolatrice"] floating enable
 
 # GTK THEMES
-exec_always --no-startup-id {
+exec --no-startup-id {
     gsettings set org.gnome.desktop.interface gtk-theme 'Materia-dark-compact'
     gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
     gsettings set org.gnome.desktop.interface icon-theme 'Obsidian-Aqua'
@@ -71,7 +71,7 @@ set $DMENU dmenu_run -i -fn "JetBrainsMono Nerd Font Propo Bold 10" -nb "#000000
 
 # WOB CONFIG
 set $WOBSOCK $XDG_RUNTIME_DIR/wob.sock
-exec_always rm -f $WOBSOCK && mkfifo $WOBSOCK && tail -f $WOBSOCK | wob
+exec rm -f $WOBSOCK && mkfifo $WOBSOCK && tail -f $WOBSOCK | wob
 
 # LOCKSCREEN
 set $LOCK swaylock -C $HOME/.config/sway/swaylock
@@ -138,7 +138,7 @@ bindgesture swipe:down move position center, resize set width 50 ppt, resize set
 #                                    IDLE CONFIGURATION                                           #
 ###################################################################################################
 
-exec_always --no-startup-id swayidle -w \
+exec --no-startup-id swayidle -w \
     timeout 300 '$LOCK' \
     timeout 600 'swaymsg "output * disable"' \
     resume 'swaymsg "output * enable"' \
@@ -282,22 +282,22 @@ bindsym $MOD+Shift+0 move container to workspace number 10
 ###################################################################################################
 
 # MAKO FOR NOTIFICATION
-exec 'systemctl --user start mako'
+exec --no-startup-id 'systemctl --user start mako'
 
 # POLKIT
-exec_always --no-startup-id '/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1'
+exec --no-startup-id '/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1'
 
 # KEYRING
-exec_always --no-startup-id 'eval $(gnome-keyring-daemon --start)'
+exec --no-startup-id 'eval $(gnome-keyring-daemon --start)'
 
 # BATTERY ALERT
-exec_always --no-startup-id '$HOME/.config/sway/battery-alert'
+exec --no-startup-id 'systemctl --user start batsignal'
 
 # AUTO START NIGHT LIGHT
-exec 'systemctl --user start gammastep'
+exec --no-startup-id 'systemctl --user start gammastep'
 
 # AUTO TILING
-exec_always --no-startup-id 'autotiling'
+exec --no-startup-id 'autotiling'
 
 ###################################################################################################
 #                                    INCLUDE                                                      #
