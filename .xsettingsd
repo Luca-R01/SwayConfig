@@ -1,5 +1,5 @@
 Net/ThemeName "Materia-dark-compact"
 Net/IconThemeName "Obsidian-Aqua"
 Net/CursorThemeName "Adwaita"
-Gtk/FontName "SpaceMono Nerd Font Propo Regular 10"
+Gtk/FontName "JetBrainsMono Nerd Font Propo 10"
 Gtk/ColorScheme "prefer-dark"
